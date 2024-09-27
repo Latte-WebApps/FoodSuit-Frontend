@@ -1,3 +1,92 @@
 {
-
+  "employees": [
+    {
+      "id": 1,
+      "name": "Juan Flores",
+      "image": "http://image.com/juan_flores"
+    },
+    {
+      "id": 2,
+      "name": "Maria Perez",
+      "image": "http://image.com/maria_perez"
+    },
+    {
+      "id": 3,
+      "name": "Carlos Garcia",
+      "image": "http://image.com/carlos_garcia"
+    },
+    {
+      "id": 4,
+      "name": "Ana Torres",
+      "image": "http://image.com/ana_torres"
+    },
+    {
+      "id": 5,
+      "name": "Luis Morales",
+      "image": "http://image.com/luis_morales"
+    },
+    {
+      "id": 6,
+      "name": "Sofia Lopez",
+      "image": "http://image.com/sofia_lopez"
+    },
+    {
+      "id": 7,
+      "name": "Miguel Rodriguez",
+      "image": "http://image.com/miguel_rodriguez"
+    },
+    {
+      "id": 8,
+      "name": "Laura Hernandez",
+      "image": "http://image.com/laura_hernandez"
+    },
+    {
+      "id": 9,
+      "name": "Jorge Ramirez",
+      "image": "http://image.com/jorge_ramirez"
+    },
+    {
+      "id": 10,
+      "name": "Claudia Jimenez",
+      "image": "http://image.com/claudia_jimenez"
+    }
+  ],
+  "inventory": [
+    {
+      "id": 8,
+      "name": "Bell Pepper",
+      "quantity": 18,
+      "image": "http://image.com/bell_pepper"
+    },
+    {
+      "id": 9,
+      "name": "Olive Oil",
+      "quantity": 5,
+      "image": "http://image.com/olive_oil"
+    },
+    {
+      "id": 10,
+      "name": "Vinegar",
+      "quantity": 7,
+      "image": "http://image.com/vinegar"
+    },
+    {
+      "id": 11,
+      "name": "Salt",
+      "quantity": 25,
+      "image": "http://image.com/salt"
+    },
+    {
+      "id": 12,
+      "name": "Pepper",
+      "quantity": 12,
+      "image": "http://image.com/pepper"
+    },
+    {
+      "id": 13,
+      "name": "Sugar",
+      "quantity": 22,
+      "image": "http://image.com/sugar"
+    }
+  ]
 }
