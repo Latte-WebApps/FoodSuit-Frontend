@@ -1,9 +1,9 @@
 <script>
-import {Employee} from "../model/employee.entity.js";
-import {EmployeeService} from "../services/employees.service.js";
+import {Employee} from "../model/employee-entity.js";
+import {EmployeeService} from "../services/employees-service.js";
 import DataManager from "../../shared/components/data-manager.component.vue";
-import EmployeeCreateAndEdit from "../components/employee-create-and-edit.vue";
-import EmployeeCreateAndEditDialog from "../components/employee-create-and-edit.vue";
+import EmployeeCreateAndEdit from "../components/employees-create-and-edit.vue";
+import EmployeeCreateAndEditDialog from "../components/employees-create-and-edit.vue";
 
 export default {
   name: "employee",
@@ -12,7 +12,7 @@ export default {
     return {
       title: {singular: "Employee", plural: "Employees"},
       employees: [],
-      employee: new employee({}),
+      employee: new Employee({}),
       selectedEmployees: [],
       employeeService: null,
       createAndEditDialogIsVisible: false,

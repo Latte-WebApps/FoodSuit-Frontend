@@ -1,6 +1,6 @@
 <script>
 import CreateAndEdit from "../../shared/components/create-and-edit.component.vue";
-import {Employee} from "../model/employee.entity.js";
+import {Employee} from "../model/employee-entity.js";
 
 export default {
   name: "employee-create-and-edit-dialog",

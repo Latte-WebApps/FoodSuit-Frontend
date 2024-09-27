@@ -24,6 +24,7 @@ export default {
         },
         newItem() {
           this.$emit('new-item-requested');
+        },
         newEmployee() {
           this.$emit('new-employee-requested');
         },
@@ -36,8 +37,8 @@ export default {
             rejectLabel:  'Cancel',
             acceptLabel:  'Delete',
             acceptClass:  'p-button-danger',
-            accept:       () => this.$emit('delete-selected-items-requested', this.selectedItems),
-            accept:       () => this.$emit('delete-selected-employees-requested', this.selectedEmployee),
+            acceptItem:       () => this.$emit('delete-selected-items-requested', this.selectedItems),
+            acceptEmployee:       () => this.$emit('delete-selected-employees-requested', this.selectedEmployee),
             reject:       () => {}
           });
         },
@@ -47,7 +48,7 @@ export default {
         editItem(item) {
           this.$emit('edit-item-requested', item);
         },
-        confirmDeleteItem(item) {
+        confirmDeleteItem(item) {},
         editEmployee(employee) {
           this.$emit('edit-employee-requested', employee);
         },
@@ -60,8 +61,8 @@ export default {
             rejectLabel:  'Cancel',
             acceptLabel:  'Delete',
             acceptClass:  'p-button-danger',
-            accept:       () => this.$emit('delete-item-requested', item),
-            accept:       () => this.$emit('delete-employee-requested', employee),
+            acceptItem:       () => this.$emit('delete-item-requested', item),
+            acceptEmployee:       () => this.$emit('delete-employee-requested', employee),
             reject:       () => {}
           });
         }
@@ -97,7 +98,8 @@ export default {
       data-key="id"
       paginator-template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown">
     <pv-column :exportable="false" selection-mode="multiple" style="width: 3rem" />
-<template>
+  </pv-data-table>
+  <template>
   <h3>Manage {{ title.plural }}</h3>
   <!-- Toolbar Section -->
   <pv-toolbar class="mb-4">
@@ -137,6 +139,8 @@ export default {
     </pv-column>
   </pv-data-table>
 </template>
+</template>
 
 <style scoped>
+
 </style>

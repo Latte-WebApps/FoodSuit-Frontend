@@ -1,6 +1,6 @@
 import {createApp} from 'vue'
 import './style.css'
-import App from './app.vue'
+import App from './App.vue'
 import PrimeVue from 'primevue/config';
 import Aura from '@primevue/themes/aura';
 import 'primeflex/primeflex.css';
@@ -30,14 +30,19 @@ import Row from "primevue/row";
 import Toast from "primevue/toast";
 import i18n from "./i18n.js";
 import SelectButton from "primevue/selectbutton";
-import router from './router';
+import router from './router/index.js';
 import Toolbar from "primevue/toolbar";
+import Tag from "primevue/tag";
+import Drawer from "primevue/drawer";
+import Textarea from "primevue/textarea";
 
 
 const app = createApp(App);
 app.use(PrimeVue, {
-    preset: Aura,
     ripple: true,
+    theme: {
+        preset: Aura,
+    }
 })
 app.use(ConfirmationService)
     .use(DialogService)
@@ -61,8 +66,6 @@ app.component('pv-button', Button)
     .component('pv-menu', Menu)
     .component('pv-rating', Rating)
     .component('pv-row', Row)
-    .component("pv-toast", Toast)
-    .component("pv-toolbar", Toolbar)
     .component('pv-tag', Tag)
     .component('pv-drawer', Drawer)
     .component('pv-textarea', Textarea)
