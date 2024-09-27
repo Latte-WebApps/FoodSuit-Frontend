@@ -1,17 +1,11 @@
 import { createApp } from 'vue';
 import './style.css';
 import App from './App.vue';
-import router from './router';
 
 import PrimeVue from 'primevue/config';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 import Aura from '@primevue/themes/aura'
-import Toolbar from "primevue/toolbar";
-import Toast from "primevue/toast";
-import Button from "primevue/button";
-import DataTable from "primevue/datatable";
-import Column from "primevue/column";
 import router from "./router/index.js";
 import Chart from "primevue/chart";
 import InputNumber from "primevue/inputnumber";
@@ -57,16 +51,7 @@ app.use(ConfirmationService)
     .use(DialogService)
     .use(ToastService);
 
-app.component('pv-button', Button)
-    .component('pv-column', Column)
-    .component('pv-confirm-dialog', ConfirmDialog)
-    .component('pv-checkbox', Checkbox)
-    .component('pv-data-table', DataTable)
-    .component('pv-dialog', Dialog)
-    .component('pv-select', Select)
-    .component('pv-select-button', SelectButton)
-    .component('pv-float-label', FloatLabel)
-    .component('pv-icon-field', IconField)
+app.component('pv-icon-field', IconField)
     .component('pv-input-icon', InputIcon)
     .component('pv-input-text', InputText)
     .component('pv-input-number', InputNumber)
@@ -77,7 +62,16 @@ app.component('pv-button', Button)
     .component('pv-drawer', Drawer)
     .component('pv-textarea', Textarea)
     .component('pv-toolbar', Toolbar)
-    .component('pv-toast', Toast);
+    .component('pv-toast', Toast)
+    .component('pv-button', Button)
+    .component('pv-column', Column)
+    .component('pv-confirm-dialog', ConfirmDialog)
+    .component('pv-checkbox', Checkbox)
+    .component('pv-data-table', DataTable)
+    .component('pv-dialog', Dialog)
+    .component('pv-select', Select)
+    .component('pv-select-button', SelectButton)
+    .component('pv-float-label', FloatLabel)
     .component('pv-chart', Chart);
 
 app.use(i18n);

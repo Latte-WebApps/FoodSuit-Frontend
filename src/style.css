@@ -59,11 +59,62 @@ button:focus-visible {
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  max-width: 100%;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
+
+
+
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 20px;
+  overflow: hidden;
+}
+
+
+.inventory-status {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.p-datatable {
+  width: 100% ;
+}
+
+.p-datatable-scrollable {
+  width: 100%;
+}
+
+
+.inventory-title {
+  margin-bottom: 10px;
+}
+
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    height: auto;
+  }
+}
+
+
 
 @media (prefers-color-scheme: light) {
   :root {

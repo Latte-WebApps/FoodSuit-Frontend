@@ -12,7 +12,7 @@ export default {
 
 <template>
   <!-- Data Table -->
-  <pv-datatable
+  <pv-data-table
       ref='dt'
       :paginator="true"
       :rows="7"
@@ -23,7 +23,7 @@ export default {
     <pv-column v-if="dynamic" v-for="column in columns" :key="column.field"
                :field="column.field"
                :header="column.header"/>
-  </pv-datatable>
+  </pv-data-table>
 </template>
 
 <style scoped>
