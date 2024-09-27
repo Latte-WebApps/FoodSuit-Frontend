@@ -2,7 +2,6 @@ import { createApp } from 'vue';
 import './style.css';
 import App from './App.vue';
 
-
 import PrimeVue from 'primevue/config';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
@@ -34,6 +33,8 @@ import Tag from "primevue/tag";
 import Textarea from "primevue/textarea";
 import Toast from "primevue/toast";
 import i18n from "./i18n.js";
+import DatePicker from "primevue/datepicker";
+import Card from "primevue/card";
 
 const app = createApp(App);
 app.use(PrimeVue, {
@@ -68,7 +69,9 @@ app.component('pv-button', Button)
     .component('pv-textarea', Textarea)
     .component('pv-toolbar', Toolbar)
     .component('pv-toast', Toast)
-    .component('pv-chart', Chart);
+    .component('pv-chart', Chart)
+    .component('pv-date-picker', DatePicker)
+    .component('pv-card', Card);
 
 app.use(i18n);
 
