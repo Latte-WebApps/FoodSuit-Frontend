@@ -3,72 +3,52 @@
     {
       "id": 1,
       "name": "Juan Flores",
-      "image": "http://image.com/juan_flores",
-      "schedule-start": "08:00",
-      "schedule-end": "16:00"
+      "image": "http://image.com/juan_flores"
     },
     {
       "id": 2,
       "name": "Maria Perez",
-      "image": "http://image.com/maria_perez",
-        "schedule-start": "09:00",
-        "schedule-end": "17:00"
+      "image": "http://image.com/maria_perez"
     },
     {
       "id": 3,
       "name": "Carlos Garcia",
-      "image": "http://image.com/carlos_garcia",
-      "schedule-start": "10:00",
-      "schedule-end": "18:00"
+      "image": "http://image.com/carlos_garcia"
     },
     {
       "id": 4,
       "name": "Ana Torres",
-      "image": "http://image.com/ana_torres",
-      "schedule-start": "11:00",
-      "schedule-end": "19:00"
+      "image": "http://image.com/ana_torres"
     },
     {
       "id": 5,
       "name": "Luis Morales",
-      "image": "http://image.com/luis_morales",
-      "schedule-start": "12:00",
-      "schedule-end": "20:00"
+      "image": "http://image.com/luis_morales"
     },
     {
       "id": 6,
       "name": "Sofia Lopez",
-      "image": "http://image.com/sofia_lopez",
-      "schedule-start": "13:00",
-      "schedule-end": "21:00"
+      "image": "http://image.com/sofia_lopez"
     },
     {
       "id": 7,
       "name": "Miguel Rodriguez",
-      "image": "http://image.com/miguel_rodriguez",
-      "schedule-start": "14:00",
-      "schedule-end": "22:00"
+      "image": "http://image.com/miguel_rodriguez"
     },
     {
       "id": 8,
       "name": "Laura Hernandez",
-      "image": "http://image.com/laura_hernandez",
-      "schedule-start": "14:00",
-      "schedule-end": "22:00"
+      "image": "http://image.com/laura_hernandez"
     },
     {
       "id": 9,
       "name": "Jorge Ramirez",
-      "image": "http://image.com/jorge_ramirez",
-      "schedule-start": "15:00",
-      "schedule-end": "23:00"
+      "image": "http://image.com/jorge_ramirez"
     },
     {
       "id": 10,
       "name": "Claudia Jimenez",
-      "image": "http://image.com/claudia_jimenez",
-      "schedule-start": "14:00",
-      "schedule-end": "22:00"
+      "image": "http://image.com/claudia_jimenez"
     }
   ],
   "inventory": [
