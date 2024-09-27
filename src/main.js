@@ -5,6 +5,7 @@ import PrimeVue from 'primevue/config';
 import Aura from '@primevue/themes/aura';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
+
 import ConfirmationService from "primevue/confirmationservice";
 import ToastService from "primevue/toastservice";
 import DialogService from "primevue/dialogservice";
@@ -14,6 +15,7 @@ import Column from "primevue/column";
 import ConfirmDialog from "primevue/confirmdialog";
 import Checkbox from "primevue/checkbox";
 import DataTable from "primevue/datatable";
+import Chart from "primevue/chart";
 import Dialog from "primevue/dialog";
 import Select from "primevue/select";
 import FileUpload from "primevue/fileupload";
@@ -37,13 +39,6 @@ app.use(PrimeVue, {
     preset: Aura,
     ripple: true,
 })
-
-app.use(ConfirmationService)
-    .use(DialogService)
-    .use(ToastService);
-
-app.use(PrimeVue, {ripple: true, theme: { preset: Aura } });
-
 app.use(ConfirmationService)
     .use(DialogService)
     .use(ToastService);
@@ -68,6 +63,12 @@ app.component('pv-button', Button)
     .component('pv-row', Row)
     .component("pv-toast", Toast)
     .component("pv-toolbar", Toolbar)
+    .component('pv-tag', Tag)
+    .component('pv-drawer', Drawer)
+    .component('pv-textarea', Textarea)
+    .component('pv-toolbar', Toolbar)
+    .component('pv-toast', Toast);
+    .component('pv-chart', Chart);
 
 
 app.use(i18n);

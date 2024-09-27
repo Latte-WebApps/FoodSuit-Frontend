@@ -1,39 +1,51 @@
-<template>
-  <div id="app">
-    <header>
-      <h1>Employees Schedule</h1>
-    </header>
-    <main>
-      <header-content/>
-      <create-and-edit/>
-      <ScheduleApp />
-      <pv-float-label/>
-      <main>
-        <router-view/>
-      </main>
-    </main>
-  </div>
-
-</template>
-
 <script>
-
-import ScheduleApp from './schedules/components/schedule-component.vue'
-import CreateAndEdit from "./shared/components/create-and-edit.component.vue";
-import HeaderContent from "./public/header-content.component.vue";
+import HeaderContent from "./public/components/header-content.component.vue";
 
 export default {
   name: 'app',
   title: 'FoodSuit',
-  components: {
-    HeaderContent,
-    CreateAndEdit,
-    ScheduleApp
-
+  components: {HeaderContent},
+  data() {
+    return {
+      items: [
+        {label: 'Home', to: '/home'},
+        {label: 'Finance', to: '/finance'}
+      ]
+    }
   }
-};
+}
 </script>
 
-<style>
-/* Add any global styles here */
+<template>
+  <pv-toast/>
+  <header-content/>
+  <pv-toolbar class="sections">
+    <template #start>
+      <div class="flex-column">
+        <router-link v-for="item in items"
+                     :key="item.label"
+                     v-slot="{navigate, href}"
+                     :to="item.to" custom>
+          <pv-button :href="href" class="p-button-text"
+                     @click="navigate">
+            {{item.label}}
+          </pv-button>
+        </router-link>
+      </div>
+    </template>
+  </pv-toolbar>
+  <main>
+    <router-view/>
+  </main>
+</template>
+
+<style scoped>
+.sections {
+  width: 100%;
+  position: fixed;
+  top: 85px;
+  left: 0;
+  z-index: 1000;
+  background-color: #7f939a;
+}
 </style>
