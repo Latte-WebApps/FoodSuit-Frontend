@@ -6,7 +6,14 @@ import router from './router';
 import PrimeVue from 'primevue/config';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
-import Lara from '@primevue/themes/aura'
+import Aura from '@primevue/themes/aura'
+import Toolbar from "primevue/toolbar";
+import Toast from "primevue/toast";
+import Button from "primevue/button";
+import DataTable from "primevue/datatable";
+import Column from "primevue/column";
+import router from "./router/index.js";
+import Chart from "primevue/chart";
 import InputNumber from "primevue/inputnumber";
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
@@ -37,16 +44,14 @@ const app = createApp(App);
 app.use(PrimeVue, {
     ripple: true,
     theme: {
-        preset: Lara,
+        preset: Aura,
         options: {
             prefix: 'p',
             darkModeSelector: 'system',
             cssLayer: false
-
         }
     }
 })
-
 
 app.use(ConfirmationService)
     .use(DialogService)
@@ -73,10 +78,10 @@ app.component('pv-button', Button)
     .component('pv-textarea', Textarea)
     .component('pv-toolbar', Toolbar)
     .component('pv-toast', Toast);
+    .component('pv-chart', Chart);
 
 app.use(i18n);
 
 app.use(router);
 
 app.mount('#app');
-
