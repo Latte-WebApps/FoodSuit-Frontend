@@ -119,9 +119,10 @@ export default {
                   v-on:delete-item-requested="onDeleteItem($event)"
                   v-on:delete-selected-items-requested="onDeleteSelectedItems($event)">
       <template #custom-columns>
-        <pv-column :sortable="true" field="id" header="Id" style="min-width: 12rem"/>
-        <pv-column :sortable="true" field="name" header="Name" style="min-width: 24rem"/>
-        <pv-column :sortable="true" field="quantity" header="Stock" style="min-width: 24rem"/>
+        <pv-column :sortable="true" field="id" header="Id" style="min-width: 10rem"/>
+        <pv-column :sortable="true" field="name" header="Name" style="min-width: 12rem"/>
+        <pv-column :sortable="true" field="quantity" header="Stock" style="min-width: 10rem"/>
+        <pv-column :sortable="true" field="image" header="Image" style="min-width: 10rem"/>
       </template>
     </data-manager>
     <item-create-and-edit-dialog

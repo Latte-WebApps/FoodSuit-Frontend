@@ -40,6 +40,24 @@ export default {
                            :class="{'p-invalid': submitted && !item.name }"/>
           </pv-float-label>
         </div>
+
+        <div class="field mt-5">
+        <pv-float-label>
+          <label for="quantity">quantity</label>
+          <pv-input-number id="quantity" v-model="item.quantity"
+                           :class="{'p-invalid': submitted && !item.quantity }"/>
+        </pv-float-label>
+        </div>
+
+        <div class="field mt-5">
+          <pv-float-label>
+            <label for="image">image</label>
+            <pv-input-text id="image" v-model="item.image"
+                           :class="{'p-invalid': submitted && !item.image }"/>
+          </pv-float-label>
+
+
+        </div>
       </div>
     </template>
   </create-and-edit>
