@@ -11,6 +11,7 @@ import Button from "primevue/button";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import router from "./router/index.js";
+import Chart from "primevue/chart";
 
 
 const app = createApp(App);
@@ -25,7 +26,8 @@ app.component('pv-toolbar', Toolbar)
     .component('pv-toast', Toast)
     .component('pv-button', Button)
     .component('pv-datatable', DataTable)
-    .component('pv-column', Column);
+    .component('pv-column', Column)
+    .component('pv-chart', Chart);
 
 app.use(router);
 

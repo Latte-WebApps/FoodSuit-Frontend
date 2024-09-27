@@ -1,13 +1,17 @@
 <script>
 import ReportTableComponent from "../components/report-table.component.vue";
+import ReportPie from "../components/report-pie.component.vue";
 export default {
   name: "finance-overview",
-  components: {ReportTableComponent}
+  components: {ReportPie, ReportTableComponent}
 }
 </script>
 
 <template>
-  <report-table-component/>
+  <div class="flex flex-row gap-8">
+    <report-pie/>
+    <report-table-component/>
+  </div>
 </template>
 
 <style scoped>
