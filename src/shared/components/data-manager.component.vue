@@ -62,32 +62,31 @@ export default {
 }
 </script>
 
-<template>
+<template >
   <h3>Manage {{ title.plural }}</h3>
   <!-- Toolbar Section -->
-  <pv-toolbar class="mb-4">
-    <template #start>
+  <pv-toolbar class="mb-2 ">
+    <template #end>
       <pv-button class="mr-2" icon="pi pi-plus" label="New" severity="success" @click="newItem"/>
       <pv-button :disabled="!selectedItems || !selectedItems.length" icon="pi pi-trash" label="Delete"
                  severity="danger" @click="confirmDeleteSelected"/>
     </template>
-    <template #end>
-      <pv-button icon="pi pi-download" label="Export" severity="help" @click="exportToCsv"/>
-    </template>
+
   </pv-toolbar>
   <!-- Data Table Section -->
   <pv-data-table
+
       ref="dt"
       v-model:selection="selectedItems"
       :filters="filters"
       :paginator="true"
       :rows="10"
-      :rows-per-page-options="[5,10,15]"
+      :rows-per-page-options="[10,20,30]"
       :value="items"
       current-page-report-template="Showing {first} to {last} of {totalRecords} ${{ title.plural }}"
       data-key="id"
       paginator-template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown">
-    <pv-column :exportable="false" selection-mode="multiple" style="width: 3rem"/>
+    <pv-column :exportable="false" selection-mode="multiple" style="width: 3rem" />
     <slot name="custom-columns"></slot>
     <pv-column v-if="dynamic" v-for="column in columns" :key="column.field"
                :field="column.field"
@@ -102,5 +101,6 @@ export default {
 </template>
 
 <style scoped>
+
 
 </style>

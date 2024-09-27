@@ -121,6 +121,7 @@ export default {
       <template #custom-columns>
         <pv-column :sortable="true" field="id" header="Id" style="min-width: 12rem"/>
         <pv-column :sortable="true" field="name" header="Name" style="min-width: 24rem"/>
+        <pv-column :sortable="true" field="quantity" header="Stock" style="min-width: 24rem"/>
       </template>
     </data-manager>
     <item-create-and-edit-dialog
