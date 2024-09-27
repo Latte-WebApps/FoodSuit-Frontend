@@ -8,9 +8,14 @@ export default {
 </script>
 
 <template>
-  <div class="flex flex-row gap-8">
-    <report-pie/>
-    <report-table-component/>
+  <div class="flex flex-row lg:gap-8">
+    <div>
+      <p>test</p>
+    </div>
+    <div>
+      <report-pie/>
+      <report-table-component/>
+    </div>
   </div>
 </template>
 

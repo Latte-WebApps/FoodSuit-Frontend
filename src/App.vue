@@ -9,7 +9,8 @@ export default {
     return {
       items: [
         {label: 'Home', to: '/home'},
-        {label: 'Finance', to: '/finance'}
+        {label: 'Finance', to: '/finance'},
+        //{label: 'Inventory', to: '/inventory'},
       ]
     }
   }
