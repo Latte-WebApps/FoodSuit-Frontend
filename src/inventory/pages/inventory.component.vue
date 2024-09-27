@@ -122,7 +122,12 @@ export default {
         <pv-column :sortable="true" field="id" header="Id" style="min-width: 10rem"/>
         <pv-column :sortable="true" field="name" header="Name" style="min-width: 12rem"/>
         <pv-column :sortable="true" field="quantity" header="Stock" style="min-width: 10rem"/>
-        <pv-column :sortable="true" field="image" header="Image" style="min-width: 10rem"/>
+        <pv-column field="image" header="Image" style="width: 10rem">
+          <template #body="slotProps">
+            <img :src="slotProps.data.image" alt="Item Image" style="width: 100%; height: auto; border-radius: 4px;" />
+          </template>
+        </pv-column>
+
       </template>
     </data-manager>
     <item-create-and-edit-dialog
