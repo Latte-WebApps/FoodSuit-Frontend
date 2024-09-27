@@ -18,6 +18,7 @@ export default {
 
 <template>
   <pv-toast/>
+  <pv-confirm-dialog/>
   <header-content/>
   <pv-toolbar class="sections">
     <template #start>
