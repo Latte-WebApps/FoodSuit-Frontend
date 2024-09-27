@@ -1,17 +1,11 @@
 import { createApp } from 'vue';
 import './style.css';
 import App from './App.vue';
-import router from './router';
 
 import PrimeVue from 'primevue/config';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 import Aura from '@primevue/themes/aura'
-import Toolbar from "primevue/toolbar";
-import Toast from "primevue/toast";
-import Button from "primevue/button";
-import DataTable from "primevue/datatable";
-import Column from "primevue/column";
 import router from "./router/index.js";
 import Chart from "primevue/chart";
 import InputNumber from "primevue/inputnumber";
@@ -77,7 +71,7 @@ app.component('pv-button', Button)
     .component('pv-drawer', Drawer)
     .component('pv-textarea', Textarea)
     .component('pv-toolbar', Toolbar)
-    .component('pv-toast', Toast);
+    .component('pv-toast', Toast)
     .component('pv-chart', Chart);
 
 app.use(i18n);

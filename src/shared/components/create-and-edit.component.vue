@@ -4,7 +4,7 @@ const defaultStyle = {width: '400px'};
 
 export default {
   name: "create-and-edit",
-  props: {entity: null, visible: Boolean, entityName: '', edit: Boolean, size: 'default'},
+  props: {entity: null, visible: Boolean, entityName: 'Agregar', edit: Boolean, size: 'default'},
   methods: {
     onCancel() {
       this.$emit('cancel-requested');
@@ -22,6 +22,7 @@ export default {
       let dialogStyle = defaultStyle;
       dialogStyle = this.size === 'standard' ? {width: '600px'} : defaultStyle;
       dialogStyle = this.size === 'large' ? {width: '800px'} : defaultStyle;
+
       return dialogStyle;
     }
   }

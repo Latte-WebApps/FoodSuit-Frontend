@@ -111,7 +111,7 @@ export default {
 </script>
 
 <template>
-  <div class="w-full">
+  <div class="w-full mt-8">
     <data-manager :title="title"
                   v-bind:items="items"
                   v-on:new-item-requested="onNewItem"
