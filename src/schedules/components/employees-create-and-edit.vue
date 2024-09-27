@@ -3,7 +3,7 @@ import CreateAndEdit from "../../shared/components/create-and-edit.component.vue
 import {Employee} from "../model/employee.entity.js";
 
 export default {
-  name: "item-create-and-edit-dialog",
+  name: "employee-create-and-edit-dialog",
   computed: {
     Employee() {
       return Employee
@@ -11,7 +11,7 @@ export default {
   },
   components: {CreateAndEdit},
   props: {
-    item: null,
+    employee: null,
     visible: Boolean
   },
   data() {

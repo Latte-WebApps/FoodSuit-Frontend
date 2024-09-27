@@ -29,6 +29,7 @@ import Toast from "primevue/toast";
 import i18n from "./i18n.js";
 import SelectButton from "primevue/selectbutton";
 import router from './router';
+import Toolbar from "primevue/toolbar";
 
 
 const app = createApp(App);
@@ -66,10 +67,10 @@ app.component('pv-button', Button)
     .component('pv-rating', Rating)
     .component('pv-row', Row)
     .component("pv-toast", Toast)
+    .component("pv-toolbar", Toolbar)
 
 
 app.use(i18n);
 app.use(router);
 
-app.mount('#app');
-
+app.mount('#app');  

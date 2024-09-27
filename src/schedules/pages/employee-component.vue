@@ -2,12 +2,12 @@
 import {Employee} from "../model/employee.entity.js";
 import {EmployeeService} from "../services/employees.service.js";
 import DataManager from "../../shared/components/data-manager.component.vue";
-import ItemCreateAndEdit from "../components/item-create-and-edit.vue";
-import ItemCreateAndEditDialog from "../components/item-create-and-edit.vue";
+import EmployeeCreateAndEdit from "../components/employee-create-and-edit.vue";
+import EmployeeCreateAndEditDialog from "../components/employee-create-and-edit.vue";
 
 export default {
   name: "employee",
-  components: {ItemCreateAndEditDialog, ItemCreateAndEdit, DataManager},
+  components: {EmployeeCreateAndEditDialog, EmployeeCreateAndEdit, DataManager},
   data() {
     return {
       title: {singular: "Employee", plural: "Employees"},
@@ -41,13 +41,10 @@ export default {
       this.createAndEditDialogIsVisible = true;
     },
     onDeleteEmployee(employee) {
-      this.item = new Employee(employee);
+      this.employee = new Employee(employee);
       this.deleteEmployee();
     },
-    onDeleteSelectedItems(selectedItems) {
-      this.selectedItems = selectedItems;
-      this.deleteSelectedItems();
-    },
+
     onCancelRequested() {
       this.createAndEditDialogIsVisible = false;
       this.submitted = false;
@@ -56,9 +53,9 @@ export default {
     onSaveRequested(employee) {
       console.log('onSaveRequested');
       this.submitted = true;
-      if (this.item.name.trim()) {
+      if (this.employee.name.trim()) {
         if (employee.id) {
-          this.updateItem();
+          this.updateEmployee();
         } else
         {
           this.createEmployee();
@@ -70,24 +67,24 @@ export default {
     createEmployee() {
       this.employeeService.create(this.employee).then(response => {
         let employee = new Employee(response.data);
-        this.items.push(employee);
-        this.notifySuccessfulAction("Item created successfully");
+        this.employees.push(employee);
+        this.notifySuccessfulAction("Employee created successfully");
       }).catch(error => console.error(error));
     },
     updateEmployee() {
       this.employeeService.update(this.employee.id, this.employee).then(response => {
-        console.log('updateItem');
+        console.log('updateEmployee');
         let index = this.findIndexById(this.employee.id);
         this.employees[index] = new Employee(response.data);
         console.log(this.employees);
-        this.notifySuccessfulAction("Item updated successfully");
+        this.notifySuccessfulAction("Employee updated successfully");
       }).catch(error => console.error(error));
     },
     deleteEmployee() {
       this.employeeService.delete(this.employee.id).then(() => {
         let index = this.findIndexById(this.employee.id);
         this.employee.splice(index, 1);
-        this.notifySuccessfulAction("Item deleted successfully");
+        this.notifySuccessfulAction("Employee deleted successfully");
       }).catch(error => console.error(error));
     },
     onDeleteSelectedEmployees() {
@@ -102,7 +99,7 @@ export default {
   created() {
     this.employeeService = new EmployeeService();
     this.employeeService.getAll().then(response => {
-      this.employees = response.data.map(item => new Employee(Employee));
+      this.employees = response.data.map(employee => new Employee(Employee));
       console.log(this.employees);
     }).catch(error => console.error(error));
   }
@@ -115,14 +112,14 @@ export default {
                   v-bind:employee="employees"
                   v-on:new-employee-requested="onNewEmployee"
                   v-on:edit-employee-requested="onEditEmployee($event)"
-                  v-on:delete-item-requested="onDeleteEmployee($event)"
-                  v-on:delete-selected-employee-requested="onDeleteSelectedEmployees($event)" items="">
+                  v-on:delete-employee-requested="onDeleteEmployee($event)"
+                  v-on:delete-selected-employee-requested="onDeleteSelectedEmployees($event)" employee="">
       <template #custom-columns>
         <pv-column :sortable="true" field="id" header="Id" style="min-width: 12rem"/>
         <pv-column :sortable="true" field="name" header="Name" style="min-width: 24rem"/>
       </template>
     </data-manager>
-    <item-create-and-edit-dialog
+    <employee-create-and-edit-dialog
         :edit="isEdit"
         :employee="employee"
         :visible="createAndEditDialogIsVisible"
