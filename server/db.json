@@ -53,6 +53,48 @@
   ],
   "inventory": [
     {
+      "id": 1,
+      "name": "Chicken",
+      "quantity": 12,
+      "image": "http://image.com/chicken"
+    },
+    {
+      "id": 2,
+      "name": "Beef",
+      "quantity": 8,
+      "image": "http://image.com/beef"
+    },
+    {
+      "id": 3,
+      "name": "Pasta",
+      "quantity": 25,
+      "image": "http://image.com/pasta"
+    },
+    {
+      "id": 4,
+      "name": "Tomato",
+      "quantity": 30,
+      "image": "http://image.com/tomato"
+    },
+    {
+      "id": 5,
+      "name": "Lettuce",
+      "quantity": 15,
+      "image": "http://image.com/lettuce"
+    },
+    {
+      "id": 6,
+      "name": "Onion",
+      "quantity": 20,
+      "image": "http://image.com/onion"
+    },
+    {
+      "id": 7,
+      "name": "Garlic",
+      "quantity": 10,
+      "image": "http://image.com/garlic"
+    },
+    {
       "id": 8,
       "name": "Bell Pepper",
       "quantity": 18,
@@ -87,6 +129,160 @@
       "name": "Sugar",
       "quantity": 22,
       "image": "http://image.com/sugar"
+    },
+    {
+      "id": 14,
+      "name": "Flour",
+      "quantity": 30,
+      "image": "http://image.com/flour"
+    },
+    {
+      "id": 15,
+      "name": "Milk",
+      "quantity": 20,
+      "image": "http://image.com/milk"
+    }
+  ],
+  "reports": [
+    {
+      "id": 1,
+      "date": "2024-09-02",
+      "description": "Service to Table 1",
+      "amount": 100,
+      "type": "income"
+    },
+    {
+      "id": 2,
+      "date": "2024-09-03",
+      "description": "Service to Table 2",
+      "amount": 150,
+      "type": "income"
+    },
+    {
+      "id": 3,
+      "date": "2024-09-04",
+      "description": "Service to Table 5",
+      "amount": 60,
+      "type": "income"
+    },
+    {
+      "id": 4,
+      "date": "2024-09-05",
+      "description": "Service to Table 3",
+      "amount": 110,
+      "type": "income"
+    },
+    {
+      "id": 5,
+      "date": "2024-09-06",
+      "description": "Service to Table 4",
+      "amount": 30,
+      "type": "income"
+    },
+    {
+      "id": 6,
+      "date": "2024-09-07",
+      "description": "Service to Table 6",
+      "amount": 30,
+      "type": "income"
+    },
+    {
+      "id": 7,
+      "date": "2024-09-08",
+      "description": "Service to Table 8",
+      "amount": 40,
+      "type": "income"
+    },
+    {
+      "id": 8,
+      "date": "2024-09-09",
+      "description": "Service to Table 9",
+      "amount": 120,
+      "type": "income"
+    },
+    {
+      "id": 9,
+      "date": "2024-09-10",
+      "description": "Service to Table 1",
+      "amount": 60,
+      "type": "income"
+    },
+    {
+      "id": 10,
+      "date": "2024-09-11",
+      "description": "Service to Table 2",
+      "amount": 550,
+      "type": "income"
+    },
+    {
+      "id": 11,
+      "date": "2024-09-02",
+      "description": "Purchase of Chicken 2 units",
+      "amount": 50,
+      "type": "expense"
+    },
+    {
+      "id": 12,
+      "date": "2024-09-03",
+      "description": "Purchase of Beef 1 unit",
+      "amount": 30,
+      "type": "expense"
+    },
+    {
+      "id": 13,
+      "date": "2024-09-04",
+      "description": "Purchase of Pasta 5 units",
+      "amount": 100,
+      "type": "expense"
+    },
+    {
+      "id": 14,
+      "date": "2024-09-05",
+      "description": "Purchase of Tomato 10 units",
+      "amount": 20,
+      "type": "expense"
+    },
+    {
+      "id": 15,
+      "date": "2024-09-06",
+      "description": "Purchase of Lettuce 3 units",
+      "amount": 10,
+      "type": "expense"
+    },
+    {
+      "id": 16,
+      "date": "2024-09-07",
+      "description": "Purchase of Onion 4 units",
+      "amount": 15,
+      "type": "expense"
+    },
+    {
+      "id": 17,
+      "date": "2024-09-08",
+      "description": "Purchase of Garlic 2 units",
+      "amount": 5,
+      "type": "expense"
+    },
+    {
+      "id": 18,
+      "date": "2024-09-09",
+      "description": "Purchase of Bell Pepper 3 units",
+      "amount": 10,
+      "type": "expense"
+    },
+    {
+      "id": 19,
+      "date": "2024-09-10",
+      "description": "Purchase of Olive Oil 1 unit",
+      "amount": 5,
+      "type": "expense"
+    },
+    {
+      "id": 20,
+      "date": "2024-09-11",
+      "description": "Purchase of Vinegar 1 unit",
+      "amount": 5,
+      "type": "expense"
     }
   ]
 }
