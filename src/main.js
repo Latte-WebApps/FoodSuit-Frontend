@@ -67,7 +67,7 @@ app.component('pv-button', Button)
     .component('pv-drawer', Drawer)
     .component('pv-textarea', Textarea)
     .component('pv-toolbar', Toolbar)
-    .component('pv-toast', Toast);
+    .component('pv-toast', Toast)
     .component('pv-chart', Chart);
 
 
