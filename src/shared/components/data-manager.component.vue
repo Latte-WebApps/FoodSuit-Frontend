@@ -63,12 +63,12 @@ export default {
 </script>
 
 <template >
-  <h3>Manage {{ title.plural }}</h3>
+  <h3> Manage {{ title.plural }}</h3>
   <!-- Toolbar Section -->
   <pv-toolbar class="mb-2 ">
     <template #end>
-      <pv-button class="mr-2" icon="pi pi-plus" label="New" severity="success" @click="newItem"/>
-      <pv-button :disabled="!selectedItems || !selectedItems.length" icon="pi pi-trash" label="Delete"
+      <pv-button class="mr-2 bg-blue-500" icon="pi pi-plus" label="New" severity="success" @click="newItem"/>
+      <pv-button class="mr-2 bg-red-500" :disabled="!selectedItems || !selectedItems.length" icon="pi pi-trash" label="Delete"
                  severity="danger" @click="confirmDeleteSelected"/>
     </template>
 
@@ -85,16 +85,20 @@ export default {
       :value="items"
       current-page-report-template="Showing {first} to {last} of {totalRecords} ${{ title.plural }}"
       data-key="id"
-      paginator-template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown">
-    <pv-column :exportable="false" selection-mode="multiple" style="width: 3rem" />
-    <slot name="custom-columns"></slot>
+      paginator-template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+
+
+
+  >
+    <pv-column :exportable="false" selection-mode="multiple" class="bg-gray-100"  style="width: 3rem" />
+    <slot name="custom-columns" ></slot>
     <pv-column v-if="dynamic" v-for="column in columns" :key="column.field"
                :field="column.field"
-               :header="column.header"/>
-    <pv-column :exportable="false" style="min-width: 8rem">
+               :header="column.header" />
+    <pv-column :exportable="false" class="bg-gray-100" style="min-width: 8rem">
       <template #body="slotProps">
-        <pv-button icon="pi pi-pencil" outlined rounded class="mr-2" @click="editItem(slotProps.data)"/>
-        <pv-button icon="pi pi-trash" outlined rounded severity="danger" @click="confirmDeleteItem(slotProps.data)"/>
+        <pv-button icon="pi pi-pencil" outlined rounded class="mr-2 text-orange-500 border-orange-500 border-2" @click="editItem(slotProps.data)" />
+        <pv-button icon="pi pi-trash" outlined rounded class="mr-2 text-red-500 border-red-500 border-2 " severity="danger" @click="confirmDeleteItem(slotProps.data)"/>
       </template>
     </pv-column>
   </pv-data-table>

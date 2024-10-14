@@ -28,9 +28,9 @@ export default {
 
 <template>
   <div class="w-full">
-    <table-manager v-bind:items="reports">
+    <table-manager v-bind:items="reports" >
       <template #custom-columns>
-        <pv-column :sortable="true" field="description" header="Description" style="min-width: 24rem"/>
+        <pv-column :sortable="true" field="description" header="Description" class="bg-gray-100"  style="min-width: 24rem"/>
         <pv-column :sortable="true" field="amount" header="Amount" style="min-width: 12rem"/>
       </template>
       <template #row="slotProps">
