@@ -118,11 +118,11 @@ export default {
                   v-on:edit-item-requested="onEditItem($event)"
                   v-on:delete-item-requested="onDeleteItem($event)"
                   v-on:delete-selected-items-requested="onDeleteSelectedItems($event)">
-      <template #custom-columns>
-        <pv-column :sortable="true" field="id" header="Id" style="min-width: 10rem"/>
-        <pv-column :sortable="true" field="name" header="Name" style="min-width: 12rem"/>
-        <pv-column :sortable="true" field="quantity" header="Stock" style="min-width: 10rem"/>
-        <pv-column field="image" header="Image" style="width: 10rem">
+      <template #custom-columns >
+        <pv-column :sortable="true" field="id" header="Id" style="min-width: 10rem" class="bg-gray-100" />
+        <pv-column :sortable="true" field="name" header="Name" style="min-width: 12rem" class="bg-gray-100" />
+        <pv-column :sortable="true" field="quantity" header="Stock" style="min-width: 10rem" class="bg-gray-100" />
+        <pv-column field="image" header="Image" style="width: 10rem" class="bg-gray-100" >
           <template #body="slotProps">
             <img :src="slotProps.data.image" alt="Item Image" style="width: 100%; height: auto; border-radius: 4px;" />
           </template>

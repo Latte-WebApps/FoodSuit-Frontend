@@ -4,6 +4,7 @@ import App from './App.vue'
 import PrimeVue from 'primevue/config';
 import Aura from '@primevue/themes/aura';
 import 'primeflex/primeflex.css';
+import "primeflex/themes/primeone-light.css"
 import 'primeicons/primeicons.css';
 
 import ConfirmationService from "primevue/confirmationservice";
