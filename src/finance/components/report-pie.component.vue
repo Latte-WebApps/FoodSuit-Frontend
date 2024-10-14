@@ -8,7 +8,11 @@ export default {
     return {
       reports: [],
       reportService: null,
-      chartData: null
+      chartData: null,
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
     }
   },
   methods: {
@@ -49,7 +53,7 @@ export default {
 </script>
 
 <template>
-  <div class="card flex justify-center">
+  <div class="card flex justify-center h-25rem">
     <pv-chart type="pie" :data="chartData" :options="chartOptions" class="w-full md:w-[30rem]"/>
   </div>
 </template>
