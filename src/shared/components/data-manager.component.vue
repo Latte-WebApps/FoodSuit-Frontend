@@ -65,7 +65,7 @@ export default {
 <template >
   <h3> Manage {{ title.plural }}</h3>
   <!-- Toolbar Section -->
-  <pv-toolbar class="mb-2 ">
+  <pv-toolbar class="mb-2 bg-gray-300">
     <template #end>
       <pv-button class="mr-2 bg-blue-500" icon="pi pi-plus" label="New" severity="success" @click="newItem"/>
       <pv-button class="mr-2 bg-red-500" :disabled="!selectedItems || !selectedItems.length" icon="pi pi-trash" label="Delete"
