@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const http = axios.create({
-    baseURL: 'https://my-json-server.typicode.com/Latte-WebApps/FoodSuit-JSONServer',
+    baseURL: API_BASE_URL,
 });
 
 http.defaults.headers.common['Content-Type'] = 'application/json';
