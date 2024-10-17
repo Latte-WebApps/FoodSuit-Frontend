@@ -3,52 +3,62 @@
     {
       "id": 1,
       "name": "Juan Flores",
-      "image": "http://image.com/juan_flores"
+      "image": "http://image.com/juan_flores",
+      "schedule": "0"
     },
     {
       "id": 2,
       "name": "Maria Perez",
-      "image": "http://image.com/maria_perez"
+      "image": "http://image.com/maria_perez",
+      "schedule": "0"
     },
     {
       "id": 3,
       "name": "Carlos Garcia",
-      "image": "http://image.com/carlos_garcia"
+      "image": "http://image.com/carlos_garcia",
+      "schedule": "0"
     },
     {
       "id": 4,
       "name": "Ana Torres",
-      "image": "http://image.com/ana_torres"
+      "image": "http://image.com/ana_torres",
+      "schedule": "0"
     },
     {
       "id": 5,
       "name": "Luis Morales",
-      "image": "http://image.com/luis_morales"
+      "image": "http://image.com/luis_morales",
+      "schedule": "0"
     },
     {
       "id": 6,
       "name": "Sofia Lopez",
-      "image": "http://image.com/sofia_lopez"
+      "image": "http://image.com/sofia_lopez",
+      "schedule": "0"
     },
     {
       "id": 7,
       "name": "Miguel Rodriguez",
-      "image": "http://image.com/miguel_rodriguez"
+      "image": "http://image.com/miguel_rodriguez",
+      "schedule": "0"
     },
     {
       "id": 8,
       "name": "Laura Hernandez",
-      "image": "http://image.com/laura_hernandez"
+      "image": "http://image.com/laura_hernandez",
+      "schedule": "0"
     },
     {
       "id": 9,
       "name": "Jorge Ramirez",
-      "image": "http://image.com/jorge_ramirez"
+      "image": "http://image.com/jorge_ramirez",
+      "schedule": "0"
     },
     {
       "id": 10,
       "name": "Claudia Jimenez",
-      "image": "http://image.com/claudia_jimenez"
+      "image": "http://image.com/claudia_jimenez",
+      "schedule": "0"
     }
   ],
   "inventory": [
@@ -73,32 +83,27 @@
     {
       "id": 4,
       "name": "Tomato",
-      "quantity": 30,
-      "image": "http://image.com/tomato"
+      "quantity": 30
     },
     {
       "id": 5,
       "name": "Lettuce",
-      "quantity": 15,
-      "image": "http://image.com/lettuce"
+      "quantity": 15
     },
     {
       "id": 6,
       "name": "Onion",
-      "quantity": 20,
-      "image": "http://image.com/onion"
+      "quantity": 20
     },
     {
       "id": 7,
       "name": "Garlic",
-      "quantity": 10,
-      "image": "http://image.com/garlic"
+      "quantity": 10
     },
     {
       "id": 8,
       "name": "Bell Pepper",
-      "quantity": 18,
-      "image": "http://image.com/bell_pepper"
+      "quantity": 18
     },
     {
       "id": 9,
@@ -141,6 +146,12 @@
       "name": "Milk",
       "quantity": 20,
       "image": "http://image.com/milk"
+    },
+    {
+      "id": 16,
+      "name": "Food",
+      "quantity": 1,
+      "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Frevistacitylife.com%2Fwp-content%2Fuploads%2F2022%2F07%2FBannerPostsComeMas.jpg&f=1&nofb=1&ipt=a7d1dde61ad4cbf5d69b30f8556ab6f1b27af192c0687cfdc3223706939c6fc9&ipo=images"
     }
   ],
   "reports": [

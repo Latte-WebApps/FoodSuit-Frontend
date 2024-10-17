@@ -1,14 +1,8 @@
 <script>
 import CreateAndEdit from "../../shared/components/create-and-edit.component.vue";
-import {Employee} from "../model/employee.entity.js";
 
 export default {
   name: "employee-create-and-edit-dialog",
-  computed: {
-    Employee() {
-      return Employee
-    }
-  },
   components: {CreateAndEdit},
   props: {
     employee: null,
@@ -25,6 +19,9 @@ export default {
     },
     onSaveRequested() {
       this.submitted = true;
+      if (this.employee.name && this.employee.schedule) {
+        this.$emit('save-requested', this.employee);
+      }
     }
   }
 }
@@ -32,7 +29,7 @@ export default {
 
 <template>
   <create-and-edit
-      :entity="Employee"
+      :entity="employee"
       :visible="visible"
       entity-name="Employee"
       @cancel-requested="onCancelRequested"
@@ -42,8 +39,16 @@ export default {
         <div class="field mt-5">
           <pv-float-label>
             <label for="name">Name</label>
-            <pv-input-text id="name" v-model="Employee.name"
-                           :class="{'p-invalid': submitted && !Employee.name }"/>
+            <pv-input-text id="name" v-model="employee.name"
+                           :class="{'p-invalid': submitted && !employee.name }"/>
+          </pv-float-label>
+        </div>
+
+        <div class="field mt-5">
+        <pv-float-label>
+            <label for="schedule">Schedule</label>
+            <pv-input-text id="schedule" v-model="employee.schedule"
+                           :class="{'p-invalid': submitted && !employee.schedule }"/>
           </pv-float-label>
         </div>
       </div>
