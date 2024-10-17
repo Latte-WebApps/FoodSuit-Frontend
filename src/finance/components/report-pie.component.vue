@@ -53,7 +53,7 @@ export default {
 </script>
 
 <template>
-  <div class="card flex justify-center h-25rem">
+  <div class="card flex justify-center h-23rem">
     <pv-chart type="pie" :data="chartData" :options="chartOptions" class="w-full md:w-[30rem]"/>
   </div>
 </template>
