@@ -65,6 +65,10 @@ button:focus-visible {
   text-align: center;
 }
 
+.p-paginator.p-component{
+  background-color: #F5F5F5;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

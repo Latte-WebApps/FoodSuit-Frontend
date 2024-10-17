@@ -1,16 +1,26 @@
+<template>
+
+  <home-report></home-report>
+
+</template>
+
 <script>
+
+import HomeReport from '../../reports/components/home-report.component.vue';
+
 export default {
-  name: "home"
+  components: {
+    HomeReport
+  }
 }
 </script>
 
-<template>
-  <div class="w-full">
-    <h2>FoodSuit Home</h2>
-    <p>Home section works!</p>
-  </div>
-</template>
 
 <style scoped>
+header {
+  background-color: #f8f9fa;
+  padding: 10px;
+}
+
 
 </style>

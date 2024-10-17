@@ -4,14 +4,14 @@ export default {
   name: "data-manager",
   inheritAttrs: false,
   props: {
-    employee: {type: Array, required: true},
+    items: {type: Array, required: true},
     title: {type: {singular: '', plural: ''}, required: true},
     dynamic: {type: Boolean, default: false},
     columns: {type: Array, default: () => []}
   },
   data() {
     return {
-      selectedEmployee: [],
+      selectedItems: [],
       filters: null
     }
   },
@@ -20,29 +20,29 @@ export default {
         initFilters() {
           this.filters = { global: { value: null, matchMode: FilterMatchMode.CONTAINS } };
         },
-        newEmployee() {
-          this.$emit('new-employee-requested');
+        newItem() {
+          this.$emit('new-item-requested');
         },
         confirmDeleteSelected() {
           this.$confirm.require( {
             message:      `Are you sure you want to delete the selected ${this.title.plural}?`,
-            header:       'Confirmation',
-            icon:         'pi pi-exclamation-triangle',
-            rejectClass:  'p-button-secondary p-button-outlined',
-            rejectLabel:  'Cancel',
-            acceptLabel:  'Delete',
-            acceptClass:  'p-button-danger',
-            accept:       () => this.$emit('delete-selected-employees-requested', this.selectedEmployee),
-            reject:       () => {}
-          });
+              header:       'Confirmation',
+              icon:         'pi pi-exclamation-triangle',
+              rejectClass:  'p-button-secondary p-button-outlined',
+              rejectLabel:  'Cancel',
+              acceptLabel:  'Delete',
+              acceptClass:  'p-button-danger',
+              accept:       () => this.$emit('delete-selected-items-requested', this.selectedItems),
+              reject:       () => {}
+        });
         },
         exportToCsv() {
           this.$refs.dt.exportCSV();
         },
-        editEmployee(employee) {
-          this.$emit('edit-employee-requested', employee);
+        editItem(item) {
+          this.$emit('edit-item-requested', item);
         },
-        confirmDeleteEmployee(employee) {
+        confirmDeleteItem(item) {
           this.$confirm.require( {
             message:      `Are you sure you want to delete this ${this.title.singular}?`,
             header:       'Confirmation',
@@ -51,7 +51,7 @@ export default {
             rejectLabel:  'Cancel',
             acceptLabel:  'Delete',
             acceptClass:  'p-button-danger',
-            accept:       () => this.$emit('delete-employee-requested', employee),
+            accept:       () => this.$emit('delete-item-requested', item),
             reject:       () => {}
           });
         }
@@ -62,45 +62,49 @@ export default {
 }
 </script>
 
-<template>
-  <h3>Manage {{ title.plural }}</h3>
+<template >
+  <h3> Manage {{ title.plural }}</h3>
   <!-- Toolbar Section -->
-  <pv-toolbar class="mb-4">
-    <template #start>
-      <pv-button class="mr-2" icon="pi pi-plus" label="New" severity="success" @click="newEmployee"/>
-      <pv-button :disabled="!selectedEmployee || !selectedEmployee.length" icon="pi pi-trash" label="Delete"
+  <pv-toolbar class="mb-2 bg-gray-300">
+    <template #end>
+      <pv-button class="mr-2 bg-blue-500" icon="pi pi-plus" label="New" severity="success" @click="newItem"/>
+      <pv-button class="mr-2 bg-red-500" :disabled="!selectedItems || !selectedItems.length" icon="pi pi-trash" label="Delete"
                  severity="danger" @click="confirmDeleteSelected"/>
     </template>
-    <template #end>
-      <pv-button icon="pi pi-download" label="Export" severity="help" @click="exportToCsv"/>
-    </template>
+
   </pv-toolbar>
   <!-- Data Table Section -->
   <pv-data-table
+
       ref="dt"
-      v-model:selection="selectedEmployee"
+      v-model:selection="selectedItems"
       :filters="filters"
       :paginator="true"
       :rows="10"
-      :rows-per-page-options="[5,10,15]"
-      :value="employee"
+      :rows-per-page-options="[10,20,30]"
+      :value="items"
       current-page-report-template="Showing {first} to {last} of {totalRecords} ${{ title.plural }}"
       data-key="id"
-      paginator-template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown">
-    <pv-column :exportable="false" selection-mode="multiple" style="width: 3rem"/>
-    <slot name="custom-columns"></slot>
+      paginator-template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+
+
+
+  >
+    <pv-column :exportable="false" selection-mode="multiple" class="bg-gray-100"  style="width: 3rem" />
+    <slot name="custom-columns" ></slot>
     <pv-column v-if="dynamic" v-for="column in columns" :key="column.field"
                :field="column.field"
-               :header="column.header"/>
-    <pv-column :exportable="false" style="min-width: 8rem">
+               :header="column.header" />
+    <pv-column :exportable="false" class="bg-gray-100" style="min-width: 8rem">
       <template #body="slotProps">
-        <pv-button icon="pi pi-pencil" outlined rounded class="mr-2" @click="editEmployee(slotProps.data)"/>
-        <pv-button icon="pi pi-trash" outlined rounded severity="danger" @click="confirmDeleteEmployee(slotProps.data)"/>
+        <pv-button icon="pi pi-pencil" outlined rounded class="mr-2 text-orange-500 border-orange-500 border-2" @click="editItem(slotProps.data)" />
+        <pv-button icon="pi pi-trash" outlined rounded class="mr-2 text-red-500 border-red-500 border-2 " severity="danger" @click="confirmDeleteItem(slotProps.data)"/>
       </template>
     </pv-column>
   </pv-data-table>
 </template>
 
 <style scoped>
+
 
 </style>
