@@ -36,6 +36,7 @@ import Toolbar from "primevue/toolbar";
 import Tag from "primevue/tag";
 import Drawer from "primevue/drawer";
 import Textarea from "primevue/textarea";
+import DatePicker from "primevue/datepicker";
 
 
 const app = createApp(App);
@@ -75,7 +76,8 @@ app.component('pv-button', Button)
     .component('pv-textarea', Textarea)
     .component('pv-toolbar', Toolbar)
     .component('pv-toast', Toast)
-    .component('pv-chart', Chart);
+    .component('pv-chart', Chart)
+    .component('pv-date-picker', DatePicker)
 
 
 app.use(i18n);
