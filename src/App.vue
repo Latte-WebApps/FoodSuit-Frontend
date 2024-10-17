@@ -14,7 +14,7 @@ export default {
   <header>
     <header-content/>
   </header>
-  <main>
+  <main class="pt-8">
     <router-view/>
   </main>
 </template>
