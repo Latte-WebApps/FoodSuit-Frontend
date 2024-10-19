@@ -21,7 +21,7 @@ export default {
     this.loadReports();
   },
   methods: {
-    // Cargar los reportes desde el servicio
+
     loadReports() {
       ReportService.getAll().then((response) => {
         this.reports = response.data;
@@ -30,7 +30,7 @@ export default {
         console.error('Error loading reports:', error);
       });
     },
-    // Procesar los datos para obtener ingresos y gastos por mes
+
     getMonthlyData() {
       const incomeData = {};
       const expenseData = {};
@@ -50,7 +50,7 @@ export default {
 
       return { incomeData, expenseData };
     },
-    // Renderizar el gráfico usando Chart.js
+
     renderChart() {
       const { incomeData, expenseData } = this.getMonthlyData();
       const months = Object.keys(incomeData).length > 0 ? Object.keys(incomeData) : Object.keys(expenseData);

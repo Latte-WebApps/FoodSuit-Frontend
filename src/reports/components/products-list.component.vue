@@ -13,31 +13,31 @@ export default {
   },
   data() {
     return {
-      inventory: [], // Inventario completo
-      sortField: 'quantity', // Ordenar por cantidad
-      sortOrder: 1, // Orden ascendente
+      inventory: [],
+      sortField: 'quantity',
+      sortOrder: 1,
     };
   },
   computed: {
-    // Ordenar inventario en función del campo "cantidad"
+
     sortedInventory() {
       return [...this.inventory].sort((a, b) => {
         if (this.sortOrder === 1) return a.quantity - b.quantity; // Ascendente
         return b.quantity - a.quantity; // Descendente
       });
     },
-    // Productos más escasos (con menor cantidad)
+
     scarceInventory() {
       return [...this.inventory]
-          .sort((a, b) => a.quantity - b.quantity) // Ordenar por cantidad ascendente
-          .slice(0, 4); // Tomar los 4 primeros
+          .sort((a, b) => a.quantity - b.quantity)
+          .slice(0, 4); // Toma los 4 primeros
     }
   },
   mounted() {
     this.loadInventory();
   },
   methods: {
-    // Cargar el inventario del servicio
+
     loadInventory() {
       InventoryService.getAll()
           .then(response => {
@@ -47,7 +47,7 @@ export default {
             console.error('Error loading inventory:', error);
           });
     },
-    // Obtener la severidad del estilo para las cantidades
+    // Devuelve el nivel de severidad según la cantidad
     getSeverity(quantity) {
       return quantity <= 7 ? 'danger' : 'success';
     }
