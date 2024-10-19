@@ -27,7 +27,7 @@ export default {
     findIndexById(id) {
       return this.employees.findIndex(employee => employee.id === id);
     },
-    // Event Handlers
+
     onNewEmployee() {
       this.employee = new Employee({});
       this.isEdit = false;
@@ -45,7 +45,10 @@ export default {
       this.employee = new Employee(employee);
       this.deleteEmployee();
     },
-
+    onDeleteSelectedEmployees(selectedEmployees) {
+      this.selectedEmployees = selectedEmployees;
+      this.deleteSelectedEmployees();
+    },
     onCancelRequested() {
       this.createAndEditDialogIsVisible = false;
       this.submitted = false;
@@ -84,11 +87,11 @@ export default {
     deleteEmployee() {
       this.employeeService.delete(this.employee.id).then(() => {
         let index = this.findIndexById(this.employee.id);
-        this.employee.splice(index, 1);
+        this.employees.splice(index, 1);
         this.notifySuccessfulAction("Employee deleted successfully");
       }).catch(error => console.error(error));
     },
-    onDeleteSelectedEmployees() {
+    deleteSelectedEmployees() {
       this.selectedEmployees.forEach((employee) => {
         this.employeeService.delete(employee.id).then(() => {
           this.employees = this.employees.filter((c) => c.id !== employee.id);
