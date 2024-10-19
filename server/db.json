@@ -61,6 +61,24 @@
       "schedule": "0"
     }
   ],
+  "top-employees": [
+    {
+      "id": 7,
+      "name": "Miguel Rodriguez"
+    },
+    {
+      "id": 3,
+      "name": "Carlos Garcia"
+    },
+    {
+      "id": 1,
+      "name": "Juan Flores"
+    },
+    {
+      "id": 6,
+      "name": "Sofia Lopez"
+    }
+  ],
   "inventory": [
     {
       "id": 1,
