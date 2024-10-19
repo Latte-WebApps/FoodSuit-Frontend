@@ -8,7 +8,8 @@ export default {
         {label: 'Home', to: '/home'},
         {label: 'Finance', to: '/finance'},
         {label: 'Inventory', to: '/inventory' },
-        {label: 'Employee', to: '/employee'}
+        {label: 'Employee', to: '/employee'},
+        {label: 'Attendance', to: '/attendance'}
       ]
     }
   }
