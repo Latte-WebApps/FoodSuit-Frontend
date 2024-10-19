@@ -5,6 +5,7 @@ import Tag from 'primevue/tag';
 import InventoryService from '../services/inventory.service';
 
 export default {
+  name: 'products-list',
   components: {
     'pv-data-table': DataTable,
     'pv-column': Column,
