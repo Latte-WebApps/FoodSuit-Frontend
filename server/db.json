@@ -63,20 +63,20 @@
   ],
   "top-employees": [
     {
-      "id": 5,
-      "name": "Luis Morales"
-    },
-    {
       "id": 7,
       "name": "Miguel Rodriguez"
     },
     {
-      "id": 8,
-      "name": "Laura Hernandez"
-    },
-    {
       "id": 3,
       "name": "Carlos Garcia"
+    },
+    {
+      "id": 1,
+      "name": "Juan Flores"
+    },
+    {
+      "id": 6,
+      "name": "Sofia Lopez"
     }
   ],
   "inventory": [

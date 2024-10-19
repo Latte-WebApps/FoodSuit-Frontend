@@ -1,7 +1,7 @@
 <script>
-import EmployeeService from "../services/employees.service.js"; // Servicio para obtener todos los empleados
-import TopEmployeeService from "../services/top-employee.service.js"; // Servicio para gestionar top employees
-import CreateAndEdit from "../../shared/components/create-and-edit.component.vue"; // Usar el componente de diálogo flotante
+import EmployeeService from "../services/employees.service.js";
+import TopEmployeeService from "../services/top-employee.service.js";
+import CreateAndEdit from "../../shared/components/create-and-edit.component.vue";
 
 export default {
   name: "top-employees",
@@ -18,40 +18,49 @@ export default {
     };
   },
   mounted() {
-    this.loadEmployees(); // Cargar todos los empleados al montar el componente
-    this.loadTopEmployees(); // Cargar los empleados de "top employees" al montar el componente
+    this.loadEmployees();
+    this.loadTopEmployees();
   },
   methods: {
-    // Cargar todos los empleados desde EmployeeService
+    // Carga a todos los empleados desde EmployeeService
     loadEmployees() {
       EmployeeService.getAll().then((response) => {
-        this.employees = response.data; // Guardar la lista de empleados completa
+        this.employees = response.data; // Guarda la lista de empleados completa
       }).catch(error => {
         console.error("Error loading employees:", error);
       });
     },
-    // Cargar todos los empleados de "top employees"
+    // Carga todos los empleados de "top employees"
     loadTopEmployees() {
       TopEmployeeService.getAll().then((response) => {
-        this.topEmployees = response.data;
+        // Guarda solo los primeros 4 empleados
+        this.topEmployees = response.data.slice(0, 4);
       }).catch(error => {
         console.error("Error loading top employees:", error);
       });
     },
-    // Abrir el cuadro flotante para seleccionar un empleado de la lista general
+    // Mostrar el cuadro flotante para seleccionar un empleado
     onNewEmployee() {
-      this.employeeSelectionDialogVisible = true; // Mostrar el cuadro flotante de selección
+      if (this.topEmployees.length >= 4) {
+        alert("No puedes agregar más de 4 empleados a Top Employees.");
+        return;
+      }
+      this.employeeSelectionDialogVisible = true; // Mostrar el cuadro flotante
     },
-    // Seleccionar un empleado existente de EmployeeService para agregarlo a Top Employees
+    // Agregar un empleado a "top employees"
     onSelectEmployee(employee) {
       if (!this.topEmployees.some(emp => emp.id === employee.id)) {
-        // Agregar el empleado a la lista de top employees
-        TopEmployeeService.create({ id: employee.id, name: employee.name }).then(() => {
-          this.loadTopEmployees(); // Recargar los empleados de "top employees"
-          this.employeeSelectionDialogVisible = false; // Cerrar el cuadro flotante
-        }).catch(error => {
-          console.error("Error adding top employee:", error);
-        });
+        // Verificar si ya está en la lista
+        if (this.topEmployees.length < 4) {
+          TopEmployeeService.create({ id: employee.id, name: employee.name }).then(() => {
+            this.loadTopEmployees(); // Recargar los empleados
+            this.employeeSelectionDialogVisible = false; // Cerrar el cuadro flotante
+          }).catch(error => {
+            console.error("Error adding top employee:", error);
+          });
+        } else {
+          alert("No puedes agregar más de 4 empleados a Top Employees.");
+        }
       } else {
         alert("Este empleado ya está en la lista de Top Employees.");
       }
@@ -65,25 +74,25 @@ export default {
     // Eliminar un empleado de "top employees"
     onDeleteEmployee(employee) {
       TopEmployeeService.delete(employee.id).then(() => {
-        this.loadTopEmployees(); // Recargar los empleados de "top employees"
+        this.loadTopEmployees(); // Recargar los empleados
       }).catch(error => {
         console.error("Error deleting top employee:", error);
       });
     },
-    // Guardar empleado (actualizar)
+    // Guardar cambios en un empleado de "top employees"
     onSaveRequested(employee) {
       this.submitted = true;
       if (employee.name) {
-        // Actualizar empleado en "top employees"
+        // Verificar si es una creación o edición
         TopEmployeeService.update(employee.id, employee).then(() => {
           this.loadTopEmployees(); // Recargar los empleados
-          this.createAndEditDialogIsVisible = false; // Cerrar el cuadro flotante
+          this.createAndEditDialogIsVisible = false; //Cierra el cuadro flotante
         }).catch(error => {
           console.error("Error updating top employee:", error);
         });
       }
     },
-    // Cancelar creación o edición
+    // Cancelar la creación o edición de un empleado
     onCancelRequested() {
       this.createAndEditDialogIsVisible = false; // Cerrar el cuadro flotante
       this.submitted = false; // Reiniciar el estado de envío
@@ -91,14 +100,13 @@ export default {
     }
   }
 };
-
 </script>
 
 <template>
   <div class="top-employees">
     <h2 class="employees-title">Top Employees</h2>
 
-    <!-- Tabla para mostrar los empleados (solo los primeros 4) -->
+    <!-- Tabla para mostrar los mejores empleados -->
     <table class="employees-table">
       <thead>
       <tr>
