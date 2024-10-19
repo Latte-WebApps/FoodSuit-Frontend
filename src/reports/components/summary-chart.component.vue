@@ -1,6 +1,6 @@
 <script>
 export default {
-name: "summary-chart.component"
+name: "summary-chart"
 }
 </script>
 
