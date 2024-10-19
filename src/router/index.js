@@ -11,7 +11,7 @@ const router = createRouter({
         { path: '/home', name: 'home', component: HomeReportComponent, meta: { title: 'Home'} },
         { path: '/finance', name: 'finance', component: FinanceOverviewComponent, meta: { title: 'Finance'} },
         { path: '/inventory', name: 'inventory', component: InventoryComponent, meta: { title: 'Inventory'} },
-        { path: '/employee', name: 'employee', component: AttendanceComponent, meta: { title: 'Employee'}},
+        { path: '/employee', name: 'employee', component: EmployeeComponent, meta: { title: 'Employee'}},
         { path: '/', redirect: '/home' }
     ]
 })
