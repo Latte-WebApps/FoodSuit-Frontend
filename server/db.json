@@ -313,5 +313,23 @@
       "amount": 5,
       "type": "expense"
     }
+  ],
+  "attendance": [
+    {
+      "id": 1,
+      "employeeId": 1,
+      "name": "Juan Flores",
+      "date": "2024-10-19",
+      "start": [
+        {
+          "hour": "08:00"
+        }
+      ],
+      "end": [
+        {
+          "hour": "19:00"
+        }
+      ]
+    }
   ]
 }
