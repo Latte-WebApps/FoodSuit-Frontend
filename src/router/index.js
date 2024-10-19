@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeReportComponent from "../reports/components/home-report.component.vue";
+import HomeReportComponent from "../reports/pages/home-report.component.vue";
 import FinanceOverviewComponent from "../finance/pages/finance-overview.component.vue";
 import InventoryComponent from "../inventory/pages/inventory.component.vue";
 import EmployeeComponent from "../schedules/pages/employee-component.vue";
