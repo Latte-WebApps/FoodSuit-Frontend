@@ -63,10 +63,6 @@
   ],
   "top-employees": [
     {
-      "id": 1,
-      "name": "Juan Flores"
-    },
-    {
       "id": 5,
       "name": "Luis Morales"
     },
@@ -77,6 +73,10 @@
     {
       "id": 8,
       "name": "Laura Hernandez"
+    },
+    {
+      "id": 3,
+      "name": "Carlos Garcia"
     }
   ],
   "inventory": [
