@@ -76,16 +76,41 @@ export default {
 
   <div>
     <h1>Order</h1>
+    <div class="cards">
     <div class="body" v-for="category in categories" :key="category">
       <dish-list :dishes="dishesByCategory[category]" :category="category" @update-selected-dishes="updateSelectedDishes"/>
     </div>
-
+    </div>
+    <div class="selectables">
     <pv-select v-model="selectedTable" :options="tables" placeholder="Select table" class="w-4 md:w-30"/>
     <pv-select v-model="selectedEmployee" :options="employees" optionLabel="name" placeholder="Select an employee" class="w-7 md:30"/>
-    <pv-button @click="submitOrder">Submit order</pv-button>
+    </div>
+
+    <div class="buttons">
+    <pv-button class="h-3 w-2" @click="submitOrder">Submit order</pv-button>
+    </div>
   </div>
 </template>
 
 <style scoped>
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.selectables {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons {
+  margin: 3px;
+  padding: 10px 14px;
+  align-content: end;
+  display: flex;
+  flex-direction: row-reverse;
+}
 
 </style>
