@@ -12,8 +12,12 @@ export class DishService {
         return http.get(`${this.resourceEndpoint}/${name}`);
     }
 
-    create(foodResource) {
-        return http.post(this.orderEndpoint, foodResource);
+    getByCategory(category) {
+        return http.get(`${this.resourceEndpoint}?category=${category}`);
+    }
+
+    create(order) {
+        return http.post(this.orderEndpoint, order);
     }
 
     saveSelectedDishes(selectedFoods) {
