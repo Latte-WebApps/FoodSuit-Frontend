@@ -319,7 +319,8 @@
       "id": 1,
       "employeeId": 1,
       "name": "Juan Flores",
-      "date": "2024-10-19",
+      "date-start": "2024-06-06",
+      "date-end": "2024-10-15",
       "start": [
         {
           "hour": "08:00"
@@ -327,25 +328,26 @@
       ],
       "end": [
         {
-          "hour": "19:00"
+          "hour": "18:00"
         }
       ]
     },
     {
-      "employeeId": 7,
-      "name": "Miguel Rodriguez",
-      "date": "2024-10-19",
+      "id": 2,
+      "employeeId": 2,
+      "name": "Maria Perez",
+      "date-start": "2024-10-01",
+      "date-end": "2024-10-22",
       "start": [
         {
-          "hour": "18:14"
+          "hour": "09:00"
         }
       ],
       "end": [
         {
-          "hour": "19:15"
+          "hour": "17:00"
         }
-      ],
-      "id": 3
+      ]
     }
   ]
 }

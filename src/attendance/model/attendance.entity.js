@@ -3,7 +3,8 @@ export class Attendance {
         this.id = data.id || null;
         this.employeeId = data.employeeId || null;
         this.name = data.name || '';
-        this.date = data.date || '';
+        this.dateStart = data.dateStart || '';
+        this.dateEnd = data.dateEnd || '';
         this.start = data.start || [];
         this.end = data.end || [];
     }

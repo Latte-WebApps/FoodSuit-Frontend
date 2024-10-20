@@ -2,19 +2,17 @@
 import EmployeeService from "../../reports/services/employees.service.js";
 import AttendanceService from "../services/attendance.service";
 import Dialog from "primevue/dialog";
-import EmployeePayments from "./employee-payments.vue";
 
 export default {
   name: "attendance-management",
   components: {
-    EmployeePayments,
     'pv-dialog': Dialog
   },
   data() {
     return {
       employees: [],
       attendances: [],
-      attendance: { employeeId: null, name: '', date: '', start: [{ hour: '' }], end: [{ hour: '' }] },
+      attendance: { employeeId: null, name: '', 'date-start': '', 'date-end': '', start: [{ hour: '' }], end: [{ hour: '' }] },
       attendanceDialogVisible: false,
       isEdit: false
     };
@@ -24,7 +22,6 @@ export default {
     this.loadAttendances();
   },
   methods: {
-
     loadEmployees() {
       EmployeeService.getAll().then(response => {
         this.employees = response.data;
@@ -42,7 +39,7 @@ export default {
     },
 
     onNewAttendance() {
-      this.attendance = { employeeId: null, name: '', date: new Date().toISOString().split('T')[0], start: [{ hour: '' }], end: [{ hour: '' }] };
+      this.attendance = { id: null, employeeId: null, name: '', 'date-start': '', 'date-end': '', start: [{ hour: '' }], end: [{ hour: '' }] };
       this.isEdit = false;
       this.attendanceDialogVisible = true;
     },
@@ -96,7 +93,8 @@ export default {
       <thead>
       <tr>
         <th>Employee</th>
-        <th>Date</th>
+        <th>Date Start</th>
+        <th>Date End</th>
         <th>Start</th>
         <th>End</th>
         <th>Actions</th>
@@ -105,7 +103,8 @@ export default {
       <tbody>
       <tr v-for="attendance in attendances" :key="attendance.id">
         <td>{{ attendance.name }}</td>
-        <td>{{ attendance.date }}</td>
+        <td>{{ attendance['date-start'] }}</td>
+        <td>{{ attendance['date-end'] }}</td>
         <td>{{ attendance.start[0].hour }}</td>
         <td>{{ attendance.end[0].hour }}</td>
         <td>
@@ -121,6 +120,7 @@ export default {
       <button @click="onNewAttendance" class="btn-new-attendance">New Attendance</button>
     </div>
 
+    <!-- Dialogo para crear/editar asistencia -->
     <pv-dialog v-model:visible="attendanceDialogVisible" header="Attendance Form" modal>
       <div class="p-fluid">
         <div class="field">
@@ -130,6 +130,14 @@ export default {
               {{ employee.name }}
             </option>
           </select>
+        </div>
+        <div class="field">
+          <label for="date-start">Date Start</label>
+          <input type="date" v-model="attendance['date-start']" id="date-start" class="date-input" />
+        </div>
+        <div class="field">
+          <label for="date-end">Date End</label>
+          <input type="date" v-model="attendance['date-end']" id="date-end" class="date-input" />
         </div>
         <div class="field">
           <label for="start">Start</label>
@@ -146,13 +154,7 @@ export default {
       </div>
     </pv-dialog>
   </div>
-
-  <div>
-    <employee-payments/>
-  </div>
 </template>
-
-
 <style scoped>
 .attendance-management {
   display: flex;
@@ -192,6 +194,7 @@ export default {
   font-size: 16px;
 }
 
+.date-input,
 .time-input {
   width: 100%;
   padding: 8px;
@@ -250,6 +253,4 @@ export default {
 .btn-new-attendance:hover {
   background-color: #0056b3;
 }
-
-
 </style>
