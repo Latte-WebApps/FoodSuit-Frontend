@@ -313,5 +313,153 @@
       "amount": 5,
       "type": "expense"
     }
+  ],
+  "attendance": [
+    {
+      "id": 1,
+      "employeeId": 1,
+      "name": "Juan Flores",
+      "date-start": "2024-06-10",
+      "date-end": "2024-10-15",
+      "start": [
+        {
+          "hour": "10:00"
+        }
+      ],
+      "end": [
+        {
+          "hour": "18:00"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "employeeId": 2,
+      "name": "Maria Perez",
+      "date-start": "2024-10-01",
+      "date-end": "2024-10-22",
+      "start": [
+        {
+          "hour": "09:00"
+        }
+      ],
+      "end": [
+        {
+          "hour": "17:00"
+        }
+      ]
+    }
+  ],
+  "productivity": [
+    {
+      "employeeId": 1,
+      "employeeName": "Juan Flores",
+      "hoursWorked": [
+        160,
+        165,
+        170,
+        180,
+        175,
+        160,
+        150
+      ],
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July"
+      ]
+    },
+    {
+      "employeeId": 2,
+      "employeeName": "Maria Perez",
+      "hoursWorked": [
+        150,
+        155,
+        160,
+        162,
+        158,
+        155,
+        165
+      ],
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July"
+      ]
+    },
+    {
+      "employeeId": 3,
+      "employeeName": "Carlos Garcia",
+      "hoursWorked": [
+        180,
+        175,
+        185,
+        190,
+        180,
+        170,
+        160
+      ],
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July"
+      ]
+    },
+    {
+      "employeeId": 4,
+      "employeeName": "Ana Torres",
+      "hoursWorked": [
+        165,
+        170,
+        175,
+        180,
+        185,
+        190,
+        195
+      ],
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July"
+      ]
+    },
+    {
+      "employeeId": 5,
+      "employeeName": "Luis Morales",
+      "hoursWorked": [
+        140,
+        145,
+        150,
+        155,
+        160,
+        162,
+        165
+      ],
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July"
+      ]
+    }
   ]
 }
