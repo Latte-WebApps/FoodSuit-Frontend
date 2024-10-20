@@ -1,4 +1,5 @@
 <script>
+
 export default {
   name: "employee-payments",
   props: {
@@ -74,18 +75,18 @@ export default {
 </script>
 
 <template>
-  <div class="flex flex-column justify-content-center items-center gap-4">
+  <div class="  flex flex-column align-items-center gap-4">
     <h2>Payments Calculation</h2>
 
     <!-- Entrada para la tarifa por hora -->
-    <div class="flex flex-row w-auto">
+    <div class="flex flex-row w-4">
       <label for="hourlyRate">Payment per hour: </label>
-      <input
+      <pv-input-number
           v-model="hourlyRate"
-          type="number"
-          id="hourlyRate"
+          inputId="hourlyRate"
           placeholder="Enter hourly rate"
           min="0"
+          fluid
       />
     </div>
 
