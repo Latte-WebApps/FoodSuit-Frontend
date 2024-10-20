@@ -19,7 +19,6 @@ export default {
 
   data() {
     return {
-      /*dish: [],*/
       dishService: new DishService(),
       selectedDishes: [],
 
@@ -30,7 +29,8 @@ export default {
       selectedTable: null,
 
       selectedEmployee: null,
-      employees: []
+      employees: [],
+
     }
   },
 
@@ -51,14 +51,35 @@ export default {
 
   methods: {
     updateSelectedDishes(dish) {
-      this.selectedDishes.push(dish);
+      const category = this.categories.find(cat => this.dishesByCategory[cat].some(d => d.id === dish.id));
+      if (category) {
+        this.selectedDishes.push({ ...dish, category });
+        console.log('Updated selectedDishes:', this.selectedDishes);
+      } else {
+        console.error(`Category not found for dish id: ${dish.id}`);
+      }
+    },
+    calculateTotalPrice() {
+      let total = 0;
+      for (const selectedDish of this.selectedDishes) {
+        const dishDetails = this.dishesByCategory[selectedDish.category]?.find(d => d.id === selectedDish.id);
+        if (dishDetails) {
+          total += dishDetails.price * selectedDish.quantity;
+        } else {
+          console.error(`Dish details not found for id: ${selectedDish.id} and category: ${selectedDish.category}`);
+        }
+      }
+      console.log('Calculated total price:', total);
+      return total;
     },
     async submitOrder() {
+      const totalPrice = this.calculateTotalPrice();
       const order = {
         date: new Date().toISOString().split('T')[0],
         table: this.selectedTable,
         dishes: this.selectedDishes,
-        employee: this.selectedEmployee ? this.selectedEmployee.id : null
+        employee: this.selectedEmployee ? this.selectedEmployee.id : null,
+        totalPrice: totalPrice
       };
       try {
         await this.dishService.create(order);
