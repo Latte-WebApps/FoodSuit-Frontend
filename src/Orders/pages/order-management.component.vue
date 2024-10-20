@@ -1,6 +1,9 @@
 <script>
 import DishList from "../components/dish-list.component.vue";
 import {DishService} from "../services/dish.service.js";
+import {EmployeeService} from "../../schedules/services/employees-service.js";
+import {Employee} from "../../schedules/model/employee-entity.js";
+
 
 
 export default {
@@ -21,7 +24,13 @@ export default {
       selectedDishes: [],
 
       categories: ['starter', 'main', 'special', 'dessert', 'drink'], // Lista de categorías
-      dishesByCategory: {}
+      dishesByCategory: {},
+
+      tables: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      selectedTable: null,
+
+      selectedEmployee: null,
+      employees: []
     }
   },
 
@@ -31,6 +40,13 @@ export default {
       const response = await dishService.getByCategory(category);
       this.dishesByCategory[category] = response.data;
     }
+
+    this.employeeService = new EmployeeService();
+    this.employeeService.getAll().then(response => {
+      this.employees = response.data.map(employee => new Employee(employee));
+      console.log(this.employees);
+    }).catch(error => console.error(error));
+
   },
 
   methods: {
@@ -40,8 +56,9 @@ export default {
     async submitOrder() {
       const order = {
         date: new Date().toISOString().split('T')[0],
-        table: 1, // You can change this as needed
-        dishes: this.selectedDishes
+        table: this.selectedTable,
+        dishes: this.selectedDishes,
+        employee: this.selectedEmployee ? this.selectedEmployee.id : null
       };
       try {
         await this.dishService.create(order);
@@ -63,6 +80,8 @@ export default {
       <dish-list :dishes="dishesByCategory[category]" :category="category" @update-selected-dishes="updateSelectedDishes"/>
     </div>
 
+    <pv-select v-model="selectedTable" :options="tables" placeholder="Select table" class="w-4 md:w-30"/>
+    <pv-select v-model="selectedEmployee" :options="employees" optionLabel="name" placeholder="Select an employee" class="w-7 md:30"/>
     <pv-button @click="submitOrder">Submit order</pv-button>
   </div>
 </template>
