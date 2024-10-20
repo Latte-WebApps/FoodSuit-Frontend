@@ -1,13 +1,9 @@
 <script>
 import EmployeeService from "../../reports/services/employees.service.js";
 import AttendanceService from "../services/attendance.service";
-import Dialog from "primevue/dialog";
 
 export default {
   name: "attendance-management",
-  components: {
-    'pv-dialog': Dialog
-  },
   data() {
     return {
       employees: [],
@@ -60,11 +56,13 @@ export default {
         AttendanceService.update(this.attendance.id, this.attendance).then(() => {
           this.loadAttendances();
           this.attendanceDialogVisible = false;
+          this.$emit('attendance-updated');  // Emitir el evento de actualización de asistencias
         });
       } else {
         AttendanceService.create(this.attendance).then(() => {
           this.loadAttendances();
           this.attendanceDialogVisible = false;
+          this.$emit('attendance-updated');  // Emitir el evento de actualización de asistencias
         });
       }
     },
@@ -72,6 +70,7 @@ export default {
     onDeleteAttendance(id) {
       AttendanceService.delete(id).then(() => {
         this.loadAttendances();
+        this.$emit('attendance-updated');  // Emitir el evento de actualización de asistencias
       }).catch(error => {
         console.error("Error deleting attendance:", error);
       });
