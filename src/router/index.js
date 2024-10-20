@@ -4,6 +4,9 @@ import FinanceOverviewComponent from "../finance/pages/finance-overview.componen
 import InventoryComponent from "../inventory/pages/inventory.component.vue";
 import EmployeeComponent from "../schedules/pages/employee-component.vue";
 import AttendanceComponent from "../attendance/pages/attendance.component.vue";
+import AttendanceOverviewComponent from "../attendance/components/attendance-overview.component.vue";
+import employeePaymentsPageComponent from "../attendance/pages/employee-payments-page.component.vue";
+import EmployeePaymentsPageComponent from "../attendance/pages/employee-payments-page.component.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -12,7 +15,8 @@ const router = createRouter({
         { path: '/finance', name: 'finance', component: FinanceOverviewComponent, meta: { title: 'Finance'} },
         { path: '/inventory', name: 'inventory', component: InventoryComponent, meta: { title: 'Inventory'} },
         { path: '/employee', name: 'employee', component: EmployeeComponent, meta: { title: 'Employee'}},
-        { path: '/attendance', name: 'attendance', component: AttendanceComponent, meta: { title: 'Attendance'}},
+        { path: '/attendance', name: 'attendance', component: AttendanceOverviewComponent, meta: { title: 'Attendance'}},
+        { path: '/productivity', name: 'productivity', component: EmployeePaymentsPageComponent, meta: { title: 'Productivity'}},
         { path: '/', redirect: '/home' }
     ]
 })
