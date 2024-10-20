@@ -2,10 +2,12 @@
 import EmployeeService from "../../reports/services/employees.service.js";
 import AttendanceService from "../services/attendance.service";
 import Dialog from "primevue/dialog";
+import EmployeePayments from "./employee-payments.vue";
 
 export default {
   name: "attendance-management",
   components: {
+    EmployeePayments,
     'pv-dialog': Dialog
   },
   data() {
@@ -143,6 +145,10 @@ export default {
         </div>
       </div>
     </pv-dialog>
+  </div>
+
+  <div>
+    <employee-payments/>
   </div>
 </template>
 
