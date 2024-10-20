@@ -1,5 +1,4 @@
 <script>
-import { Dish } from "../model/dish.entity.js";
 import { DishService } from "../services/dish.service.js";
 
 export default {
