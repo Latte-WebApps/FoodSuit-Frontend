@@ -1,23 +1,10 @@
-<template>
-  <div>
-    <!-- Componente para gestionar las asistencias -->
-    <attendance-management @attendance-updated="loadAttendances"></attendance-management>
-
-    <!-- Componente para calcular los pagos -->
-    <employee-payments :attendances="attendances"></employee-payments>
-  </div>
-</template>
-
 <script>
-import AttendanceManagement from "./attendance-management.component.vue";
-import EmployeePayments from "./employee-payments.vue";
-import AttendanceService from "../services/attendance.service"; // Ruta del servicio
+import AttendanceManagement from "../components/attendance-management.component.vue";
+import AttendanceService from "../services/attendance.service.js";
 
 export default {
-  components: {
-    AttendanceManagement,
-    EmployeePayments
-  },
+  name: "attendance-page",
+  components: {AttendanceManagement},
   data() {
     return {
       attendances: []  // Aquí almacenaremos las asistencias
@@ -38,5 +25,14 @@ export default {
           });
     }
   }
-};
+}
 </script>
+
+<template>
+  <AttendanceManagement @attendance-updated="loadAttendances"></AttendanceManagement>
+
+</template>
+
+<style scoped>
+
+</style>
