@@ -1,25 +1,16 @@
 <script>
-import { Report } from "../model/report.entity.js";
-import { ReportService } from "../services/report.service.js";
-
 export default {
   name: "report-datatable",
-  data() {
-    return {
-      reports: [],
-      reportService: null
+  props: {
+    reports: {
+      type: Array,
+      required: true
     }
   },
   methods: {
     getRowType(data) {
       return data.type === 'income' ? 'income-row' : 'expense-row';
     }
-  },
-  created() {
-    this.reportService = new ReportService();
-    this.reportService.getAll().then(response => {
-      this.reports = response.data.map(report => new Report(report));
-    }).catch(e => console.error(e));
   }
 }
 </script>

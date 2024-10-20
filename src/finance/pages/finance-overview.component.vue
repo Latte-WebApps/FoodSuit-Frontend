@@ -1,10 +1,24 @@
 <script>
+import { Report } from "../model/report.entity.js";
+import { ReportService } from "../services/report.service.js";
 import ReportPie from "../components/report-pie.component.vue";
 import ReportDatatable from "../components/report-datatable.component.vue";
 import DateFilter from "../components/date-filter.component.vue";
 export default {
   name: "finance-overview",
-  components: {ReportPie, ReportDatatable, DateFilter}
+  components: {ReportPie, ReportDatatable, DateFilter},
+  data() {
+    return {
+      reports: [],
+      reportService: null
+    }
+  },
+  created() {
+    this.reportService = new ReportService();
+    this.reportService.getAll().then(response => {
+      this.reports = response.data.map(report => new Report(report));
+    }).catch(e => console.error(e));
+  }
 }
 </script>
 
@@ -31,8 +45,8 @@ export default {
       </div>
     </div>
     <div>
-      <report-pie/>
-      <report-datatable/>
+      <report-pie :reports="reports"/>
+      <report-datatable :reports="reports"/>
     </div>
 
   </div>
