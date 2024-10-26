@@ -31,6 +31,9 @@ export default {
       selectedEmployee: null,
       employees: [],
 
+      orderOverview: false,
+      viewOrders: false
+
     }
   },
 
@@ -57,6 +60,7 @@ export default {
         console.log('Updated selectedDishes:', this.selectedDishes);
       } else {
         console.error(`Category not found for dish id: ${dish.id}`);
+        //this.$toast.add({ severity: 'error', summary: 'Error', detail: `Category not found for dish id: ${dish.id}` });
       }
     },
     calculateTotalPrice() {
@@ -67,26 +71,53 @@ export default {
           total += dishDetails.price * selectedDish.quantity;
         } else {
           console.error(`Dish details not found for id: ${selectedDish.id} and category: ${selectedDish.category}`);
+          // this.$toast.add({ severity: 'error', summary: 'Error', detail: `Dish details not found for id: ${selectedDish.id} and category: ${selectedDish.category}` });
         }
       }
       console.log('Calculated total price:', total);
       return total;
     },
+
+    clearOrder() {
+      this.selectedDishes = [];
+      this.selectedTable = null;
+      this.selectedEmployee = null;
+      this.orderOverview = false;
+    },
+
     async submitOrder() {
+
+      if (!this.selectedTable) {
+        this.$toast.add({ severity: 'error', summary: 'Error', detail: 'No table selected', life: 3000 });
+        return;
+      }
+      if (!this.selectedDishes.length) {
+        this.$toast.add({ severity: 'error', summary: 'Error', detail: 'No dishes selected', life: 3000 });
+        return;
+      }
+      if (!this.selectedEmployee) {
+        this.$toast.add({ severity: 'error', summary: 'Error', detail: 'No employee selected', life: 3000 });
+        return;
+      }
+
       const totalPrice = this.calculateTotalPrice();
       const order = {
         date: new Date().toISOString().split('T')[0],
         table: this.selectedTable,
         dishes: this.selectedDishes,
         employee: this.selectedEmployee ? this.selectedEmployee.id : null,
+        status: 'In progress',
         totalPrice: totalPrice
       };
       try {
         await this.dishService.create(order);
-        console.log('Order submitted successfully');
+        //console.log('Order submitted successfully');
+        this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Order submitted successfully', life: 3000 });
       } catch (error) {
-        console.error('Error submitting order:', error);
+        this.$toast.add({ severity: 'error', life: 3000, summary: 'Error', detail: `Error submitting order: ${error.message}`});
       }
+      this.clearOrder();
+      this.orderOverview = false;
     }
   }
 
@@ -108,7 +139,24 @@ export default {
     </div>
 
     <div class="buttons">
-    <pv-button class="h-3 w-2" @click="submitOrder">Submit order</pv-button>
+      <pv-button class="button h-3 w-2" @click="orderOverview = true">Submit order</pv-button>
+      <pv-dialog v-model:visible="orderOverview" maximizable modal header="Order overview" :style="{ width: '50rem' }">
+        <div>
+          <p>Table: {{selectedTable}}</p>
+          <p>Employee: {{selectedEmployee?.name}}</p>
+          <div v-for="dish in selectedDishes" :key="dish.id">
+            <p>{{dish.name}} x {{dish.quantity}}</p>
+          </div>
+          <p>Total price: {{calculateTotalPrice()}}</p>
+          <pv-button class="button" severity="secondary" @click="clearOrder">Clear order</pv-button>
+          <pv-button class="button" @click="submitOrder">Submit order</pv-button>
+        </div>
+        </pv-dialog>
+      <pv-button class="button h-3 w-2" @click="viewOrders = true">View orders</pv-button>
+      <pv-drawer title="Orders" v-model:visible="viewOrders" header="Orders" position="full">
+        <p>Orders</p>
+      </pv-drawer>
+
     </div>
   </div>
 </template>
@@ -132,6 +180,9 @@ export default {
   align-content: end;
   display: flex;
   flex-direction: row-reverse;
+}
+.button{
+  margin: 3px;
 }
 
 </style>

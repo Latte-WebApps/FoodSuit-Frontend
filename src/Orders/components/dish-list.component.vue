@@ -39,6 +39,7 @@ export default {
 
         const dish = {
           id: this.selectedDish.id,
+          name: this.selectedDish.name,
           quantity: this.quantity,
           instruction: this.instruction
         };
