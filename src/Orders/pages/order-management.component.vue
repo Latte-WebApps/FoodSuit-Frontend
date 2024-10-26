@@ -17,6 +17,15 @@ export default {
     }
   },
 
+  computed: {
+    filteredOrders() {
+      return this.orders.filter(order => order.status === 'In progress');
+
+      /*const currentDate = new Date().toISOString().split('T')[0];
+      return this.orders.filter(order => order.status === 'In progress' && order.date === currentDate);*/
+    }
+  },
+
   data() {
     return {
       dishService: new DishService(),
@@ -32,7 +41,9 @@ export default {
       employees: [],
 
       orderOverview: false,
-      viewOrders: false
+      viewOrders: false,
+
+      orders: []
 
     }
   },
@@ -50,9 +61,40 @@ export default {
       console.log(this.employees);
     }).catch(error => console.error(error));
 
+    this.fetchOrders();
+
   },
 
   methods: {
+    async fetchOrders() {
+      try {
+        const response = await this.dishService.getAllOrders();
+        this.orders = response.data;
+      } catch (error) {
+        console.error('Error fetching orders:', error);
+      }
+    },
+    async checkoutOrder(orderId) {
+      try {
+        const order = this.orders.find(order => order.id === orderId);
+        if (order) {
+          order.status = 'Completed';
+          await this.dishService.update(orderId, order);
+          this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Order status updated to Completed', life: 3000 });
+        }
+      } catch (error) {
+        this.$toast.add({ severity: 'error', summary: 'Error', detail: `Error updating order status: ${error.message}`, life: 3000 });
+      }
+    },
+    async deleteOrder(orderId) {
+      try {
+        await this.dishService.delete(orderId);
+        this.orders = this.orders.filter(order => order.id !== orderId);
+        this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Order deleted successfully', life: 3000 });
+      } catch (error) {
+        this.$toast.add({ severity: 'error', summary: 'Error', detail: `Error deleting order: ${error.message}`, life: 3000 });
+      }
+    },
     updateSelectedDishes(dish) {
       const category = this.categories.find(cat => this.dishesByCategory[cat].some(d => d.id === dish.id));
       if (category) {
@@ -77,14 +119,20 @@ export default {
       console.log('Calculated total price:', total);
       return total;
     },
-
+    summaryOrders() {
+      this.viewOrders = true;
+      this.fetchOrders();
+    },
     clearOrder() {
       this.selectedDishes = [];
       this.selectedTable = null;
       this.selectedEmployee = null;
       this.orderOverview = false;
     },
-
+    getEmployeeName(employeeId) {
+      const employee = this.employees.find(emp => emp.id === employeeId);
+      return employee ? employee.name : 'Unknown';
+    },
     async submitOrder() {
 
       if (!this.selectedTable) {
@@ -152,9 +200,27 @@ export default {
           <pv-button class="button" @click="submitOrder">Submit order</pv-button>
         </div>
         </pv-dialog>
-      <pv-button class="button h-3 w-2" @click="viewOrders = true">View orders</pv-button>
+      <pv-button class="button h-3 w-2" @click="summaryOrders">View orders</pv-button>
       <pv-drawer title="Orders" v-model:visible="viewOrders" header="Orders" position="full">
-        <p>Orders</p>
+        <div class="orders">
+        <pv-card v-for="order in filteredOrders" :key="order.id" class="order-card">
+          <template #content>
+          <p>Order ID: {{ order.id }}</p>
+          <p>Date: {{ order.date }}</p>
+          <p>Table: {{ order.table }}</p>
+          <p>Waiter: {{ getEmployeeName(order.employee) }}</p>
+          <p>Status: {{ order.status }}</p>
+          <p>Total Price: {{ order.totalPrice }}</p>
+          <div v-for="dish in order.dishes" :key="dish.id">
+            <p>{{ dish.name }} x {{ dish.quantity }}</p>
+          </div>
+          </template>
+          <template #footer>
+            <pv-button class="button" @click="checkoutOrder(order.id)">Checkout Order</pv-button>
+            <pv-button class="button" severity="danger" @click="deleteOrder(order.id)">Delete</pv-button>
+          </template>
+        </pv-card>
+        </div>
       </pv-drawer>
 
     </div>
@@ -184,5 +250,21 @@ export default {
 .button{
   margin: 3px;
 }
-
+.orders {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.order-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 3px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  width: 25rem;
+  height: 40rem;
+}
 </style>
