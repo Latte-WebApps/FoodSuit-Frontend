@@ -24,6 +24,10 @@ export class DishService {
         return http.post(this.orderEndpoint, order);
     }
 
+    update(id, order) {
+        return http.put(`${this.orderEndpoint}/${id}`, order);
+    }
+
     delete(id) {
         return http.delete(`${this.orderEndpoint}/${id}`);
     }
