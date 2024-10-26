@@ -8,6 +8,10 @@ export class DishService {
         return http.get(this.resourceEndpoint);
     }
 
+    getAllOrders(){
+        return http.get(this.orderEndpoint);
+    }
+
     getByName(name) {
         return http.get(`${this.resourceEndpoint}/${name}`);
     }
@@ -18,6 +22,10 @@ export class DishService {
 
     create(order) {
         return http.post(this.orderEndpoint, order);
+    }
+
+    delete(id) {
+        return http.delete(`${this.orderEndpoint}/${id}`);
     }
 
     saveSelectedDishes(selectedFoods) {
