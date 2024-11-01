@@ -1,13 +1,14 @@
 <script>
-import {Report} from "../model/report.entity.js";
-import {ReportService} from "../services/report.service.js";
-
 export default {
   name: "report-pie",
+  props: {
+    reports: {
+      type: Array,
+      required: true
+    }
+  },
   data() {
     return {
-      reports: [],
-      reportService: null,
       chartData: null,
       chartOptions: {
         responsive: true,
@@ -28,26 +29,24 @@ export default {
         datasets: [
           {
             data: [incomeSum, expenseSum],
-            backgroundColor: [
-              "#aefaa6",
-              "#f3666b",
-            ],
-            hoverBackgroundColor: [
-              "#aefaa6",
-              "#f3666b",
-            ]
+            backgroundColor: ["#aefaa6", "#f3666b"],
+            hoverBackgroundColor: ["#aefaa6", "#f3666b"]
           }
         ]
       };
     }
   },
+  watch: {
+    reports: {
+      handler() {
+        this.chartData = this.setChartData();
+      },
+      deep: true,
+      immediate: true
+    }
+  },
   created() {
-    this.reportService = new ReportService();
-    this.reportService.getAll().then(response => {
-      this.reports = response.data.map(report => new Report(report));
-      this.chartData = this.setChartData();
-    }).catch(e => console.error(e));
-
+    this.chartData = this.setChartData();
   }
 }
 </script>

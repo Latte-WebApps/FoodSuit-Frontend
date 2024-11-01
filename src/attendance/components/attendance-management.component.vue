@@ -1,27 +1,23 @@
 <script>
 import EmployeeService from "../../reports/services/employees.service.js";
 import AttendanceService from "../services/attendance.service";
-import Dialog from "primevue/dialog";
+
 export default {
   name: "attendance-management",
-  components: {
-    'pv-dialog': Dialog
-  },
   data() {
     return {
-      employees: [], // Lista completa de empleados
-      attendances: [], // Lista de asistencias registradas
-      attendance: { employeeId: null, name: '', date: '', start: [{ hour: '' }], end: [{ hour: '' }] }, // Datos de la asistencia
-      attendanceDialogVisible: false, // Controla la visibilidad del cuadro flotante
-      isEdit: false // Controla si estamos en modo edición
+      employees: [],
+      attendances: [],
+      attendance: { employeeId: null, name: '', 'date-start': '', 'date-end': '', start: [{ hour: '' }], end: [{ hour: '' }] },
+      attendanceDialogVisible: false,
+      isEdit: false
     };
   },
   mounted() {
-    this.loadEmployees(); // Cargar empleados
-    this.loadAttendances(); // Cargar asistencias registradas
+    this.loadEmployees();
+    this.loadAttendances();
   },
   methods: {
-    // Cargar todos los empleados
     loadEmployees() {
       EmployeeService.getAll().then(response => {
         this.employees = response.data;
@@ -30,7 +26,6 @@ export default {
       });
     },
 
-    // Cargar todas las asistencias
     loadAttendances() {
       AttendanceService.getAll().then(response => {
         this.attendances = response.data;
@@ -39,52 +34,48 @@ export default {
       });
     },
 
-    // Iniciar un nuevo registro de asistencia
     onNewAttendance() {
-      this.attendance = { employeeId: null, name: '', date: new Date().toISOString().split('T')[0], start: [{ hour: '' }], end: [{ hour: '' }] };
+      this.attendance = { id: null, employeeId: null, name: '', 'date-start': '', 'date-end': '', start: [{ hour: '' }], end: [{ hour: '' }] };
       this.isEdit = false;
       this.attendanceDialogVisible = true;
     },
 
-    // Editar un registro de asistencia existente
     onEditAttendance(attendance) {
       this.attendance = { ...attendance };
       this.isEdit = true;
       this.attendanceDialogVisible = true;
     },
 
-    // Guardar el registro de asistencia (crear o actualizar)
     onSaveAttendance() {
       const selectedEmployee = this.employees.find(emp => emp.id === this.attendance.employeeId);
       if (selectedEmployee) {
-        this.attendance.name = selectedEmployee.name; // Asignar nombre automáticamente
+        this.attendance.name = selectedEmployee.name;
       }
 
       if (this.isEdit) {
-        // Actualizar asistencia
         AttendanceService.update(this.attendance.id, this.attendance).then(() => {
           this.loadAttendances();
           this.attendanceDialogVisible = false;
+          this.$emit('attendance-updated');  // Emitir el evento de actualización de asistencias
         });
       } else {
-        // Crear nueva asistencia
         AttendanceService.create(this.attendance).then(() => {
           this.loadAttendances();
           this.attendanceDialogVisible = false;
+          this.$emit('attendance-updated');  // Emitir el evento de actualización de asistencias
         });
       }
     },
 
-    // Eliminar un registro de asistencia
     onDeleteAttendance(id) {
       AttendanceService.delete(id).then(() => {
         this.loadAttendances();
+        this.$emit('attendance-updated');  // Emitir el evento de actualización de asistencias
       }).catch(error => {
         console.error("Error deleting attendance:", error);
       });
     },
 
-    // Cancelar la creación o edición
     onCancelAttendance() {
       this.attendanceDialogVisible = false;
     }
@@ -94,14 +85,15 @@ export default {
 
 <template>
   <div class="attendance-management">
-    <h2>Attendance Management</h2>
+    <h2 class="attendance-title">Attendance Management</h2>
 
-    <!-- Tabla para mostrar asistencia registrada -->
+    <!-- Tabla para mostrar la asistencia -->
     <table class="attendance-table">
       <thead>
       <tr>
         <th>Employee</th>
-        <th>Date</th>
+        <th>Date Start</th>
+        <th>Date End</th>
         <th>Start</th>
         <th>End</th>
         <th>Actions</th>
@@ -110,140 +102,154 @@ export default {
       <tbody>
       <tr v-for="attendance in attendances" :key="attendance.id">
         <td>{{ attendance.name }}</td>
-        <td>{{ attendance.date }}</td>
+        <td>{{ attendance['date-start'] }}</td>
+        <td>{{ attendance['date-end'] }}</td>
         <td>{{ attendance.start[0].hour }}</td>
         <td>{{ attendance.end[0].hour }}</td>
         <td>
-          <button @click="onEditAttendance(attendance)">Edit</button>
-          <button @click="onDeleteAttendance(attendance.id)">Delete</button>
+          <button @click="onEditAttendance(attendance)" class="btn-edit">Edit</button>
+          <button @click="onDeleteAttendance(attendance.id)" class="btn-delete">Delete</button>
         </td>
       </tr>
       </tbody>
     </table>
 
-    <!-- Botón para registrar una nueva asistencia -->
+    <!-- Botón para crear nuevo registro de asistencia -->
     <div class="actions">
-      <button @click="onNewAttendance">New Attendance</button>
+      <button @click="onNewAttendance" class="btn-new-attendance">New Attendance</button>
     </div>
 
-    <!-- Cuadro flotante para crear o editar asistencia -->
+    <!-- Dialogo para crear/editar asistencia -->
     <pv-dialog v-model:visible="attendanceDialogVisible" header="Attendance Form" modal>
       <div class="p-fluid">
-        <div class="field mt-5">
+        <div class="field">
           <label for="employee">Employee</label>
-          <select v-model="attendance.employeeId">
+          <select v-model="attendance.employeeId" id="employee" class="dropdown">
             <option v-for="employee in employees" :key="employee.id" :value="employee.id">
               {{ employee.name }}
             </option>
           </select>
         </div>
-        <div class="field mt-5">
-          <label for="start">Start</label>
-          <input type="time" v-model="attendance.start[0].hour">
+        <div class="field">
+          <label for="date-start">Date Start</label>
+          <input type="date" v-model="attendance['date-start']" id="date-start" class="date-input" />
         </div>
-        <div class="field mt-5">
+        <div class="field">
+          <label for="date-end">Date End</label>
+          <input type="date" v-model="attendance['date-end']" id="date-end" class="date-input" />
+        </div>
+        <div class="field">
+          <label for="start">Start</label>
+          <input type="time" v-model="attendance.start[0].hour" id="start" class="time-input" />
+        </div>
+        <div class="field">
           <label for="end">End</label>
-          <input type="time" v-model="attendance.end[0].hour">
+          <input type="time" v-model="attendance.end[0].hour" id="end" class="time-input" />
+        </div>
+        <div class="dialog-actions">
+          <button @click="onSaveAttendance" class="btn-save">Save</button>
+          <button @click="onCancelAttendance" class="btn-cancel">Cancel</button>
         </div>
       </div>
-
-      <template #footer>
-        <button @click="onSaveAttendance">Save</button>
-        <button @click="onCancelAttendance">Cancel</button>
-      </template>
     </pv-dialog>
   </div>
 </template>
-
 <style scoped>
 .attendance-management {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin-top: 20px;
+  align-items: center;
+}
+
+.attendance-title {
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .attendance-table {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
 .attendance-table th,
 .attendance-table td {
   border: 1px solid #ccc;
   padding: 10px;
-  text-align: left;
+  text-align: center;
 }
 
-.actions {
+.attendance-table th {
+  background-color: #f5f5f5;
+}
+
+.field {
+  margin-bottom: 15px;
+}
+
+.dropdown {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.date-input,
+.time-input {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: space-between;
   margin-top: 20px;
 }
 
-.actions button {
-  padding: 10px 20px;
-  margin: 5px;
+.btn-edit,
+.btn-delete {
   background-color: #007bff;
   color: white;
+  padding: 5px 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
-.actions button:hover {
-  background-color: #0056b3;
+.btn-delete {
+  background-color: #dc3545;
+  margin-left: 5px;
 }
 
-.pv-dialog {
-  max-width: 400px;
-}
-
-.pv-dialog .p-fluid {
-  display: flex;
-  flex-direction: column;
-}
-
-.pv-dialog .p-fluid .field {
-  margin-bottom: 10px;
-}
-
-.pv-dialog .p-fluid label {
-  margin-bottom: 5px;
-}
-
-.pv-dialog .p-fluid input[type="time"],
-.pv-dialog .p-fluid select {
-  padding: 10px;
-  width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.pv-dialog .p-fluid select {
-  background-color: white;
-}
-
-.pv-dialog button {
-  padding: 10px 20px;
-  margin-right: 10px;
-  background-color: #007bff;
+.btn-save {
+  background-color: #28a745;
   color: white;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
-.pv-dialog button:hover {
-  background-color: #0056b3;
-}
-
-.pv-dialog .cancel-button {
+.btn-cancel {
   background-color: #6c757d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.pv-dialog .cancel-button:hover {
-  background-color: #5a6268;
+.btn-new-attendance {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
 }
 
+.btn-new-attendance:hover {
+  background-color: #0056b3;
+}
 </style>
