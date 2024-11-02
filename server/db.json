@@ -61,6 +61,24 @@
       "schedule": "0"
     }
   ],
+  "top-employees": [
+    {
+      "id": 7,
+      "name": "Miguel Rodriguez"
+    },
+    {
+      "id": 3,
+      "name": "Carlos Garcia"
+    },
+    {
+      "id": 1,
+      "name": "Juan Flores"
+    },
+    {
+      "id": 6,
+      "name": "Sofia Lopez"
+    }
+  ],
   "inventory": [
     {
       "id": 1,
@@ -294,6 +312,262 @@
       "description": "Purchase of Vinegar 1 unit",
       "amount": 5,
       "type": "expense"
+    }
+  ],
+  "attendance": [
+    {
+      "id": 1,
+      "employeeId": 1,
+      "name": "Juan Flores",
+      "date-start": "2024-06-10",
+      "date-end": "2024-10-15",
+      "start": [
+        {
+          "hour": "10:00"
+        }
+      ],
+      "end": [
+        {
+          "hour": "18:00"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "employeeId": 2,
+      "name": "Maria Perez",
+      "date-start": "2024-10-01",
+      "date-end": "2024-10-22",
+      "start": [
+        {
+          "hour": "09:00"
+        }
+      ],
+      "end": [
+        {
+          "hour": "17:00"
+        }
+      ]
+    }
+  ],
+  "productivity": [
+    {
+      "employeeId": 1,
+      "employeeName": "Juan Flores",
+      "hoursWorked": [
+        160,
+        165,
+        170,
+        180,
+        175,
+        160,
+        150
+      ],
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July"
+      ]
+    },
+    {
+      "employeeId": 2,
+      "employeeName": "Maria Perez",
+      "hoursWorked": [
+        150,
+        155,
+        160,
+        162,
+        158,
+        155,
+        165
+      ],
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July"
+      ]
+    },
+    {
+      "employeeId": 3,
+      "employeeName": "Carlos Garcia",
+      "hoursWorked": [
+        180,
+        175,
+        185,
+        190,
+        180,
+        170,
+        160
+      ],
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July"
+      ]
+    },
+    {
+      "employeeId": 4,
+      "employeeName": "Ana Torres",
+      "hoursWorked": [
+        165,
+        170,
+        175,
+        180,
+        185,
+        190,
+        195
+      ],
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July"
+      ]
+    },
+    {
+      "employeeId": 5,
+      "employeeName": "Luis Morales",
+      "hoursWorked": [
+        140,
+        145,
+        150,
+        155,
+        160,
+        162,
+        165
+      ],
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July"
+      ]
+    }
+  ],
+  "dishes": [
+    {
+      "id": 1,
+      "name": "Spaghetti",
+      "price": 10,
+      "category": "main"
+    },
+    {
+      "id": 2,
+      "name": "Lasagna",
+      "price": 15,
+      "category": "main"
+    },
+    {
+      "id": 3,
+      "name": "Fettuccine Alfredo",
+      "price": 12,
+      "category": "main"
+    },
+    {
+      "id": 4,
+      "name": "Ceviche",
+      "price": 12,
+      "category": "starter"
+    },
+    {
+      "id": 5,
+      "name": "Wellington",
+      "price": 12,
+      "category": "special"
+    },
+    {
+      "id": 6,
+      "name": "Mazamorra",
+      "price": 12,
+      "category": "dessert"
+    },
+    {
+      "id": 7,
+      "name": "Lemonade",
+      "price": 12,
+      "category": "drink"
+    }
+  ],
+  "orders": [
+    {
+      "id": "1996",
+      "date": "2024-10-20",
+      "table": 3,
+      "dishes": [
+        {
+          "id": 4,
+          "quantity": 1,
+          "instruction": null
+        },
+        {
+          "id": 2,
+          "quantity": 2,
+          "instruction": null
+        }
+      ],
+      "employee": 3,
+      "totalPrice": 0
+    },
+    {
+      "id": "795a",
+      "date": "2024-10-20",
+      "table": 3,
+      "dishes": [
+        {
+          "id": 4,
+          "quantity": 1,
+          "instruction": "Sin lechuga"
+        },
+        {
+          "id": 2,
+          "quantity": 1,
+          "instruction": null
+        },
+        {
+          "id": 6,
+          "quantity": 1,
+          "instruction": null
+        }
+      ],
+      "employee": 10,
+      "totalPrice": 0
+    },
+    {
+      "id": "7d90",
+      "date": "2024-10-20",
+      "table": 5,
+      "dishes": [
+        {
+          "id": 4,
+          "quantity": 1,
+          "instruction": null
+        },
+        {
+          "id": 6,
+          "quantity": 1,
+          "instruction": null
+        }
+      ],
+      "employee": 8,
+      "totalPrice": 0
     }
   ]
 }
