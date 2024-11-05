@@ -461,5 +461,113 @@
         "July"
       ]
     }
+  ],
+  "dishes": [
+    {
+      "id": 1,
+      "name": "Spaghetti",
+      "price": 10,
+      "category": "main"
+    },
+    {
+      "id": 2,
+      "name": "Lasagna",
+      "price": 15,
+      "category": "main"
+    },
+    {
+      "id": 3,
+      "name": "Fettuccine Alfredo",
+      "price": 12,
+      "category": "main"
+    },
+    {
+      "id": 4,
+      "name": "Ceviche",
+      "price": 12,
+      "category": "starter"
+    },
+    {
+      "id": 5,
+      "name": "Wellington",
+      "price": 12,
+      "category": "special"
+    },
+    {
+      "id": 6,
+      "name": "Mazamorra",
+      "price": 12,
+      "category": "dessert"
+    },
+    {
+      "id": 7,
+      "name": "Lemonade",
+      "price": 12,
+      "category": "drink"
+    }
+  ],
+  "orders": [
+    {
+      "id": "1996",
+      "date": "2024-10-20",
+      "table": 3,
+      "dishes": [
+        {
+          "id": 4,
+          "quantity": 1,
+          "instruction": null
+        },
+        {
+          "id": 2,
+          "quantity": 2,
+          "instruction": null
+        }
+      ],
+      "employee": 3,
+      "totalPrice": 0
+    },
+    {
+      "id": "795a",
+      "date": "2024-10-20",
+      "table": 3,
+      "dishes": [
+        {
+          "id": 4,
+          "quantity": 1,
+          "instruction": "Sin lechuga"
+        },
+        {
+          "id": 2,
+          "quantity": 1,
+          "instruction": null
+        },
+        {
+          "id": 6,
+          "quantity": 1,
+          "instruction": null
+        }
+      ],
+      "employee": 10,
+      "totalPrice": 0
+    },
+    {
+      "id": "7d90",
+      "date": "2024-10-20",
+      "table": 5,
+      "dishes": [
+        {
+          "id": 4,
+          "quantity": 1,
+          "instruction": null
+        },
+        {
+          "id": 6,
+          "quantity": 1,
+          "instruction": null
+        }
+      ],
+      "employee": 8,
+      "totalPrice": 0
+    }
   ]
 }
