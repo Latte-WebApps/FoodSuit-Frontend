@@ -1,7 +1,7 @@
 import http from '../../shared/services/http-common.js';
 
-class EmployeeService {
-    resourceEndpoint = '/employees';
+class AttendanceService {
+    resourceEndpoint = '/attendance';
 
     getAll() {
         return http.get(this.resourceEndpoint);
@@ -11,12 +11,12 @@ class EmployeeService {
         return http.get(`${this.resourceEndpoint}/${id}`);
     }
 
-    create(employeeResource) {
-        return http.post(this.resourceEndpoint, employeeResource);
+    create(attendanceRecord) {
+        return http.post(this.resourceEndpoint, attendanceRecord);
     }
 
-    update(id, employeeResource) {
-        return http.put(`${this.resourceEndpoint}/${id}`, employeeResource);
+    update(id, attendanceRecord) {
+        return http.put(`${this.resourceEndpoint}/${id}`, attendanceRecord);
     }
 
     delete(id) {
@@ -24,4 +24,4 @@ class EmployeeService {
     }
 }
 
-export default new EmployeeService();
+export default new AttendanceService();

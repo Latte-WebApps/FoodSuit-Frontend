@@ -6,7 +6,7 @@
 
 <script>
 
-import HomeReport from '../../reports/components/home-report.component.vue';
+
 
 export default {
   components: {
