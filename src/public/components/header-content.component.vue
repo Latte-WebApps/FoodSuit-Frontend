@@ -10,7 +10,8 @@ export default {
         {label: 'Inventory', to: '/inventory' },
         {label: 'Employee', to: '/employee'},
         {label: 'Attendance', to: '/attendance'},
-        {label: 'Productivity', to: '/productivity'}
+        {label: 'Productivity', to: '/productivity'},
+        {label: 'Orders', to: '/order'}
       ]
     }
   }
