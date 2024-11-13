@@ -19,12 +19,13 @@ export default {
 
   <pv-data-table
       :value="reports"
-      :rows="7"
+      :rows="8"
       :row-class="getRowType"
       :paginator="true"
       paginator-template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink">
     <pv-column field="description" style="min-width: 24rem;"/>
-    <pv-column field="amount"  style="min-width: 12rem"/>
+    <pv-column field="amount"  style="min-width: 6rem"/>
+    <pv-column field="date" style="min-width: 12rem"/>
   </pv-data-table>
 </template>
 
