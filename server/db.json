@@ -175,143 +175,183 @@
   "reports": [
     {
       "id": 1,
-      "date": "2024-09-02",
       "description": "Service to Table 1",
+      "type": "income",
+      "date": "2024-09-02",
       "amount": 100,
-      "type": "income"
+      "ordersId": 4,
+      "productsId": ""
     },
     {
       "id": 2,
-      "date": "2024-09-03",
       "description": "Service to Table 2",
+      "type": "income",
+      "date": "2024-09-03",
       "amount": 150,
-      "type": "income"
+      "ordersId": 5,
+      "productsId": ""
     },
     {
       "id": 3,
-      "date": "2024-09-04",
       "description": "Service to Table 5",
+      "type": "income",
+      "date": "2024-09-04",
       "amount": 60,
-      "type": "income"
+      "ordersId": 6,
+      "productsId": ""
     },
     {
       "id": 4,
-      "date": "2024-09-05",
       "description": "Service to Table 3",
+      "type": "income",
+      "date": "2024-09-05",
       "amount": 110,
-      "type": "income"
+      "ordersId": 3,
+      "productsId": ""
     },
     {
       "id": 5,
-      "date": "2024-09-06",
       "description": "Service to Table 4",
+      "type": "income",
+      "date": "2024-09-06",
       "amount": 30,
-      "type": "income"
+      "ordersId": 10,
+      "productsId": ""
     },
     {
       "id": 6,
-      "date": "2024-09-07",
       "description": "Service to Table 6",
+      "type": "income",
+      "date": "2024-09-07",
       "amount": 30,
-      "type": "income"
+      "ordersId": 1,
+      "productsId": ""
     },
     {
       "id": 7,
-      "date": "2024-09-08",
       "description": "Service to Table 8",
+      "type": "income",
+      "date": "2024-09-08",
       "amount": 40,
-      "type": "income"
+      "ordersId": 10,
+      "productsId": ""
     },
     {
       "id": 8,
-      "date": "2024-09-09",
       "description": "Service to Table 9",
+      "type": "income",
+      "date": "2024-09-09",
       "amount": 120,
-      "type": "income"
+      "ordersId": 6,
+      "productsId": ""
     },
     {
       "id": 9,
-      "date": "2024-09-10",
       "description": "Service to Table 1",
+      "type": "income",
+      "date": "2024-09-10",
       "amount": 60,
-      "type": "income"
+      "ordersId": 3,
+      "productsId": ""
     },
     {
       "id": 10,
-      "date": "2024-09-11",
       "description": "Service to Table 2",
+      "type": "income",
+      "date": "2024-09-11",
       "amount": 550,
-      "type": "income"
+      "ordersId": 5,
+      "productsId": ""
     },
     {
       "id": 11,
-      "date": "2024-09-02",
       "description": "Purchase of Chicken 2 units",
+      "type": "expense",
+      "date": "2024-09-02",
       "amount": 50,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 1
     },
     {
       "id": 12,
-      "date": "2024-09-03",
       "description": "Purchase of Beef 1 unit",
+      "type": "expense",
+      "date": "2024-09-03",
       "amount": 30,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 8
     },
     {
       "id": 13,
-      "date": "2024-09-04",
       "description": "Purchase of Pasta 5 units",
+      "type": "expense",
+      "date": "2024-09-04",
       "amount": 100,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 3
     },
     {
       "id": 14,
-      "date": "2024-09-05",
       "description": "Purchase of Tomato 10 units",
+      "type": "expense",
+      "date": "2024-09-05",
       "amount": 20,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 3
     },
     {
       "id": 15,
-      "date": "2024-09-06",
       "description": "Purchase of Lettuce 3 units",
+      "type": "expense",
+      "date": "2024-09-06",
       "amount": 10,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 8
     },
     {
       "id": 16,
-      "date": "2024-09-07",
       "description": "Purchase of Onion 4 units",
+      "type": "expense",
+      "date": "2024-09-07",
       "amount": 15,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 6
     },
     {
       "id": 17,
-      "date": "2024-09-08",
       "description": "Purchase of Garlic 2 units",
+      "type": "expense",
+      "date": "2024-09-08",
       "amount": 5,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 8
     },
     {
       "id": 18,
-      "date": "2024-09-09",
       "description": "Purchase of Bell Pepper 3 units",
+      "type": "expense",
+      "date": "2024-09-09",
       "amount": 10,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 10
     },
     {
       "id": 19,
-      "date": "2024-09-10",
       "description": "Purchase of Olive Oil 1 unit",
+      "type": "expense",
+      "date": "2024-09-10",
       "amount": 5,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 9
     },
     {
       "id": 20,
-      "date": "2024-09-11",
       "description": "Purchase of Vinegar 1 unit",
+      "type": "expense",
+      "date": "2024-09-11",
       "amount": 5,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 1
     }
   ],
   "attendance": [
