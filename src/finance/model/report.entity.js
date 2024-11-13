@@ -1,9 +1,11 @@
 export class Report {
-    constructor({ id = '', date='', description = '', amount = 0, type=''}) {
+    constructor({ id = '', description='', type = '', date = '', amount=0, ordersId = '', productsId = '' }) {
         this.id = id;
-        this.date = date;
         this.description = description;
-        this.amount = amount;
         this.type = type;
+        this.date = date;
+        this.amount = amount;
+        this.ordersId = ordersId;
+        this.productsId = productsId;
     }
 }

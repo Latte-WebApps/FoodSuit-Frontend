@@ -3,10 +3,9 @@ import { Report } from "../model/report.entity.js";
 import { ReportService } from "../services/report.service.js";
 import ReportPie from "../components/report-pie.component.vue";
 import ReportDatatable from "../components/report-datatable.component.vue";
-import DateFilter from "../components/date-filter.component.vue";
 export default {
   name: "finance-overview",
-  components: {ReportPie, ReportDatatable, DateFilter},
+  components: {ReportPie, ReportDatatable},
   data() {
     return {
       reports: [],
@@ -23,11 +22,14 @@ export default {
 </script>
 
 <template>
-  <div class="flex flex-row gap-8">
-    <div>
-      <date-filter/>
-      <div class="flex flex-row lg:gap-8 justify-content-center">
+  <div class="flex flex-row gap-8 align-content-center">
+    <div class="flex align-items-center">
+      <report-datatable :reports="reports"/>
+    </div>
 
+    <div class="align-items-center">
+      <report-pie :reports="reports"/>
+      <div class="flex flex-row lg:gap-8 justify-content-center">
         <pv-card class="p-3 w-9rem">
           <template #header>
             <p>Most ordered dish</p>
@@ -43,10 +45,7 @@ export default {
           <template #title>Saltado de coliflor</template>
         </pv-card>
       </div>
-    </div>
-    <div>
-      <report-pie :reports="reports"/>
-      <report-datatable :reports="reports"/>
+
     </div>
 
   </div>
