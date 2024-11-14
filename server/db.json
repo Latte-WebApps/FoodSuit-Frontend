@@ -59,6 +59,13 @@
       "name": "Claudia Jimenez",
       "image": "http://image.com/claudia_jimenez",
       "schedule": "0"
+    },
+    {
+      "id": 11,
+      "name": "Josue Paiva",
+      "image": "",
+      "entryTime": "10:00",
+      "exitTime": "02:00"
     }
   ],
   "top-employees": [

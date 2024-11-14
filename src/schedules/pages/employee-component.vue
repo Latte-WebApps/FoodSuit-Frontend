@@ -127,7 +127,8 @@ export default {
           </template>
         </pv-column>
         <pv-column :sortable="true" field="name" header="Name" style="min-width: 24rem"/>
-        <pv-column :sortable="true" field="schedule" header="Schedule" style="min-width: 12rem"/>
+        <pv-column :sortable="true" field="entryTime" header="Entry Time" style="min-width: 12rem"/>
+        <pv-column :sortable="true" field="exitTime" header="Exit Time" style="min-width: 12rem"/>
       </template>
     </data-manager>
     <employee-create-and-edit-dialog
