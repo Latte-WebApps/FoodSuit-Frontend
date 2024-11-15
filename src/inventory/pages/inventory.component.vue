@@ -159,15 +159,15 @@ export default {
                   v-on:delete-selected-items-requested="onDeleteSelectedItems($event)">
       <template #custom-columns >
         <pv-column :sortable="true" field="id" header="Id" style="min-width: 10rem" class="bg-gray-100" />
-        <pv-column :sortable="true" field="name" header="Name" style="min-width: 12rem" class="bg-gray-100" />
-        <pv-column :sortable="true" field="quantity" header="Stock" style="min-width: 10rem" class="bg-gray-100">
+        <pv-column :sortable="true" field="name" header="Name" style="min-width: 12rem" class="bg-gray-100 " />
+        <pv-column :sortable="true" field="quantity" header="Stock" style="min-width: 10rem" class="bg-gray-100 flex justify-content-center w-12rem ">
           <template #body="slotProps">
             <div class="quantity-cell">
-              <pv-button icon="pi pi-minus" outlined rounded severity="danger" class="ml-2" @click="onDecreaseStock(slotProps.data)" />
+              <pv-button icon="pi pi-minus"    severity="danger"   rounded outlined @click="onDecreaseStock(slotProps.data)" />
               <pv-tag :severity="slotProps.data.quantity < 10 ? 'danger' : 'success'">
                 {{ slotProps.data.quantity }}
               </pv-tag>
-              <pv-button icon="pi pi-plus" outlined rounded class="ml-2" @click="onIncreaseStock(slotProps.data)" />
+              <pv-button icon="pi pi-plus"  rounded outlined  @click="onIncreaseStock(slotProps.data)" />
             </div>
           </template>
         </pv-column>
@@ -197,5 +197,8 @@ export default {
 .quantity-cell {
   display: flex;
   align-items: center;
+
 }
+
+
 </style>
