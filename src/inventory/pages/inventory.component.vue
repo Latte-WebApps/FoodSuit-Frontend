@@ -182,11 +182,13 @@ export default {
         :edit="isEdit"
         :item="item"
         :visible="createAndEditDialogIsVisible"
+        entity-name="Item"
         v-on:cancel-requested="onCancelRequested"
         v-on:save-requested="onSaveRequested($event)"/>
     <stock-edit-dialog
         :item="item"
         :visible="stockDialogIsVisible"
+        entity-name="Modificar Stock"
         :is-increase="isIncrease"
         v-on:cancel-requested="onCancelRequested"
         v-on:save-requested="onSaveRequested($event)"/>
