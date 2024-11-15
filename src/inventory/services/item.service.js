@@ -19,6 +19,10 @@ export class ItemService {
         return http.put(`${this.resourceEndpoint}/${id}`, itemResource);
     }
 
+    patch(id, data) {
+        return http.patch(`${this.resourceEndpoint}/items/${id}`, data);
+    }
+
     delete(id) {
         return http.delete(`${this.resourceEndpoint}/${id}`);
     }
