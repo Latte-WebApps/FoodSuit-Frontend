@@ -9,7 +9,11 @@ export default {
       type: Object,
       required: true
     },
-    visible: Boolean
+    visible: Boolean,
+    isIncrease: {
+      type: Boolean,
+      required: true
+    }
   },
 
   data() {
@@ -25,9 +29,32 @@ export default {
     onSaveRequested() {
       this.submitted = true;
       if (this.quantityChange > 0) {
-        this.$emit('save-requested', { ...this.item, quantityChange: this.quantityChange });
+        const change = this.isIncrease ? this.quantityChange : -this.quantityChange;
+
+        // Validar que la cantidad a restar no exceda el stock actual
+        if (!this.isIncrease && this.quantityChange > this.item.quantity) {
+          this.$toast.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Quantity to decrease exceeds current stock',
+            life: 3000
+          });
+          this.$emit('cancel-requested');
+        } else {
+          this.$emit('save-requested', { ...this.item, quantityChange: change });
+        }
+      } else {
+        this.$toast.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'La cantidad debe ser mayor que 0',
+          life: 3000
+        });
       }
     }
+
+
+
 
   }
 }
@@ -46,7 +73,6 @@ export default {
           <pv-input-number id="quantityChange" v-model="quantityChange"
                            :class="{'p-invalid': submitted && quantityChange <= 0}"
                            :min="1" />
-          <small v-if="submitted && quantityChange <= 0" class="p-error">La cantidad debe ser mayor que 0</small>
         </pv-float-label>
       </div>
     </template>

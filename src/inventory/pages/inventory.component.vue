@@ -20,13 +20,14 @@ export default {
       isEdit: false,
       isEditStock: false,
       submitted: false,
+      isIncrease: true,
       quantityChange: 0
 
     }
   },
   methods: {
     notifySuccessfulAction(message) {
-      this.$toast.add({severity: 'success', summary: 'Success', detail: message, life: 700});
+      this.$toast.add({severity: 'success', summary: 'Success', detail: message, life: 1000});
     },
     findIndexById(id) {
       return this.items.findIndex(item => item.id === id);
@@ -58,21 +59,27 @@ export default {
       this.isEdit = false;
       this.isEditStock = false;
     },
+
     onSaveRequested(updatedItem) {
+      console.log('Updated item:', updatedItem); // Confirmar que el cambio tiene el signo correcto
       this.submitted = true;
       if (this.isEditStock) {
         this.item.quantity += updatedItem.quantityChange;
+        console.log('New quantity:', this.item.quantity);
         this.updateQuantityItem();
       } else if (updatedItem.id) {
         this.updateItem();
       } else {
         this.createItem();
       }
+
       this.createAndEditDialogIsVisible = false;
       this.stockDialogIsVisible = false;
       this.isEdit = false;
       this.isEditStock = false;
     },
+
+
     // Service client methods
     createItem() {
       this.itemService.create(this.item).then(response => {
@@ -85,16 +92,18 @@ export default {
       this.itemService.update(this.item.id, this.item).then(response => {
         let index = this.findIndexById(this.item.id);
         this.items[index] = new Item(response.data);
-        this.notifySuccessfulAction("Item updated successfully");
+
       }).catch(error => console.error(error));
     },
     updateQuantityItem() {
       this.itemService.patch(this.item.id, { quantity: this.item.quantity }).then(response => {
         let index = this.findIndexById(this.item.id);
         this.items[index] = new Item(response.data);
-        this.notifySuccessfulAction("Item stock updated successfully");
+        this.notifySuccessfulAction("Item updated successfully");
       }).catch(error => console.error(error));
     },
+
+
 
     deleteItem() {
       this.itemService.delete(this.item.id).then(() => {
@@ -114,17 +123,19 @@ export default {
       this.notifySuccessfulAction("Selected Items deleted successfully");
     },
     onIncreaseStock(item) {
-      this.item = new Item({ ...item, operation: 'increase' });
+      this.item = new Item({ ...item });
       this.isEditStock = true;
       this.submitted = false;
       this.stockDialogIsVisible = true;
+      this.isIncrease = true;  // Indica que es una operación de incremento
     },
 
     onDecreaseStock(item) {
-      this.item = new Item({ ...item, operation: 'decrease' });
+      this.item = new Item({ ...item });
       this.isEditStock = true;
       this.submitted = false;
       this.stockDialogIsVisible = true;
+      this.isIncrease = false; // Indica que es una operación de decremento
     }
 
   },
@@ -176,6 +187,7 @@ export default {
     <stock-edit-dialog
         :item="item"
         :visible="stockDialogIsVisible"
+        :is-increase="isIncrease"
         v-on:cancel-requested="onCancelRequested"
         v-on:save-requested="onSaveRequested($event)"/>
   </div>
