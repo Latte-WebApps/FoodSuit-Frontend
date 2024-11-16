@@ -171,9 +171,9 @@ export default {
             </div>
           </template>
         </pv-column>
-        <pv-column field="image" header="Image" style="width: 10rem" class="bg-gray-100" >
+        <pv-column field="imageUrl" header="imageUrl" style="width: 10rem" class="bg-gray-100" >
           <template #body="slotProps">
-            <img :src="slotProps.data.image" alt="Item Image" style="width: 100%; height: auto; border-radius: 4px;" />
+            <img :src="slotProps.data.imageUrl" style="width: 100%; height: auto; border-radius: 4px;"  alt="Image not found"/>
           </template>
         </pv-column>
       </template>

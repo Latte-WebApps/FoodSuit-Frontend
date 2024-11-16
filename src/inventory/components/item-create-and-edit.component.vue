@@ -51,9 +51,9 @@ export default {
 
         <div class="field mt-5">
           <pv-float-label >
-            <label for="image">Image URL</label>
-            <pv-input-text id="image" v-model="item.image"
-                           :class="{'p-invalid': submitted && !item.image }"/>
+            <label for="imageUrl">Image URL</label>
+            <pv-input-text id="imageUrl" v-model="item.imageUrl"
+                           :class="{'p-invalid': submitted && !item.imageUrl }"/>
           </pv-float-label>
 
 

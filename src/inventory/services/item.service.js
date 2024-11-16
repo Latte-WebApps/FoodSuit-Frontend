@@ -1,7 +1,7 @@
 import http from "../../shared/services/http-common.js";
 
 export class ItemService {
-    resourceEndpoint = '/inventory';
+    resourceEndpoint = '/products';
 
     getAll() {
         return http.get(this.resourceEndpoint);
@@ -18,6 +18,7 @@ export class ItemService {
     update(id, itemResource) {
         return http.put(`${this.resourceEndpoint}/${id}`, itemResource);
     }
+
 
     patch(id, data) {
         return http.patch(`${this.resourceEndpoint}/${id}`, data);
