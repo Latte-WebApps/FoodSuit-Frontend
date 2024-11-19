@@ -6,6 +6,9 @@ import EmployeeComponent from "../schedules/pages/employee-component.vue";
 import OrderManagementComponent from "../Orders/pages/order-management.component.vue";
 import ProductivityPageComponent from "../attendance/pages/productivity-page.component.vue";
 import AttendancePageComponent from "../attendance/pages/attendance-page.component.vue";
+import SignUpComponent from "../iam/pages/sign-up.component.vue";
+import SignInComponent from "../iam/pages/sign-in.component.vue";
+import {authenticationGuard} from "../iam/services/authentication.guard.js";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -17,6 +20,8 @@ const router = createRouter({
         { path: '/attendance', name: 'attendance', component: AttendancePageComponent, meta: { title: 'Attendance'}},
         { path: '/productivity', name: 'productivity', component: ProductivityPageComponent, meta: { title: 'Productivity'}},
         { path: '/order', name: 'order', component: OrderManagementComponent, meta: { title: 'Order'} },
+        { path: '/sign-up', name: 'sign-up', component: SignUpComponent, meta: { title: 'Sign Up'}},
+        { path: '/sign-in', name: 'sign-in', component: SignInComponent, meta: { title: 'Sign In'}},
         { path: '/', redirect: '/home' }
     ]
 })
@@ -24,6 +29,6 @@ const router = createRouter({
 router.beforeEach((to,from,next) => {
     let baseTitle = 'FoodSuit' ;
     document.title = `${baseTitle} | ${to.meta['title']}`;
-    next();
+    authenticationGuard(to, from, next)
 });
 export default router;

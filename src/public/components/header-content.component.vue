@@ -1,5 +1,7 @@
 <script>
 
+import {useAuthenticationStore} from "../../iam/services/authentication.store.js";
+
 export default {
   name: "header-content" ,
   data() {
@@ -12,7 +14,21 @@ export default {
         {label: 'Attendance', to: '/attendance'},
         {label: 'Productivity', to: '/productivity'},
         {label: 'Orders', to: '/order'}
-      ]
+      ],
+      authenticationStore: useAuthenticationStore()
+    }
+  },
+  computed: {
+    isSignedIn() {
+      return this.authenticationStore.isSignedIn;
+    },
+    currentUsername() {
+      return this.authenticationStore.currentUsername;
+    }
+  },
+  methods: {
+    onSignOut() {
+      this.authenticationStore.signOut(this.$router);
     }
   }
 }
@@ -28,15 +44,15 @@ export default {
       </div>
     </template>
     <template #end>
-      <div class="flex items-center gap-4 pr-5" style="color: white">
+      <div v-if="isSignedIn" class="flex items-center gap-4 pr-5" style="color: white">
         <pv-button icon="pi pi-user" severity="secondary" aria-label="User"/>
-        <p class="font-bold">Hello, User</p>
-        <pv-button icon="pi pi-sign-out" severity="secondary" text aria-label="Sign Out"/>
+        <p class="font-bold">Hello, {{ currentUsername }}</p>
+        <pv-button icon="pi pi-sign-out" @click="onSignOut" severity="secondary" text aria-label="Sign Out"/>
       </div>
     </template>
   </pv-toolbar>
 
-  <pv-toolbar class="w-full h-3rem fixed left-0 z-1 border-noround border-none" style="top: 80px; background-color: #b4c1c5;">
+  <pv-toolbar v-if="isSignedIn" class="w-full h-3rem fixed left-0 z-1 border-noround border-none" style="top: 80px; background-color: #b4c1c5;">
     <template #start>
       <router-link
           v-for="item in items"
