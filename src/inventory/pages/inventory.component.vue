@@ -1,6 +1,8 @@
 <script>
 import {Item} from "../model/item.entity.js";
 import {ItemService} from "../services/item.service.js";
+import { Report } from "../../finance/model/report.entity.js";
+import { ReportService } from "../../finance/services/report.service.js";
 import DataManager from "../../shared/components/data-manager.component.vue";
 import ItemCreateAndEditDialog from "../components/item-create-and-edit.component.vue";
 import StockEditDialog from "../components/stock-edit.component.vue";
@@ -21,8 +23,9 @@ export default {
       isEditStock: false,
       submitted: false,
       isIncrease: true,
-      quantityChange: 0
+      quantityChange: 0,
 
+      reportService: null
     }
   },
   methods: {
@@ -67,6 +70,7 @@ export default {
         this.item.quantity += updatedItem.quantityChange;
         console.log('New quantity:', this.item.quantity);
         this.updateQuantityItem();
+        this.generateReport(this.item, updatedItem.quantityChange);
       } else if (updatedItem.id) {
         this.updateItem();
       } else {
@@ -136,6 +140,27 @@ export default {
       this.submitted = false;
       this.stockDialogIsVisible = true;
       this.isIncrease = false; // Indica que es una operación de decremento
+    },
+
+    // Report generation methods
+    generateReport(item, quantityChange) {
+      console.log('Generating report for item:', item, 'quantity change:', quantityChange);
+      const date = new Date().toISOString().split('T')[0];
+      const description = `(Replenishment) ${quantityChange} units of ${item.name}`;
+      const priceResult = item.price * quantityChange;
+
+      const report = new Report ({
+        description,
+        reportType: 'Expense',
+        date,
+        amount: priceResult,
+        productsId: item.id,
+        ordersId: 0
+      });
+      console.log('Adding report: ', report)
+      this.reportService.create(report).then(response => {
+        console.log('Report created:', response.data);
+      }).catch(error => console.error(error));
     }
 
   },
@@ -145,6 +170,7 @@ export default {
     this.itemService.getAll().then(response => {
       this.items = response.data.map(item => new Item(item));
     }).catch(error => console.error(error));
+    this.reportService = new ReportService();
   }
 }
 </script>
