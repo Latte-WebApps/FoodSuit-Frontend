@@ -6,10 +6,11 @@ import { ReportService } from "../../finance/services/report.service.js";
 import DataManager from "../../shared/components/data-manager.component.vue";
 import ItemCreateAndEditDialog from "../components/item-create-and-edit.component.vue";
 import StockEditDialog from "../components/stock-edit.component.vue";
+import DishListView from "../components/dish-list-view.component.vue";
 
 export default {
   name: "inventory",
-  components: {ItemCreateAndEditDialog, DataManager, StockEditDialog},
+  components: {DishListView, ItemCreateAndEditDialog, DataManager, StockEditDialog},
   data() {
     return {
       title: {singular: "Item", plural: "Items"},
@@ -177,49 +178,56 @@ export default {
 </script>
 
 <template>
-  <div class="w-full mt-8">
-    <data-manager :title="title"
-                  v-bind:items="items"
-                  v-on:new-item-requested="onNewItem"
-                  v-on:edit-item-requested="onEditItem($event)"
-                  v-on:delete-item-requested="onDeleteItem($event)"
-                  v-on:delete-selected-items-requested="onDeleteSelectedItems($event)">
-      <template #custom-columns >
-        <pv-column :sortable="true" field="id" header="Id" style="min-width: 10rem" class="bg-gray-100" />
-        <pv-column :sortable="true" field="name" header="Name" style="min-width: 12rem" class="bg-gray-100 " />
-        <pv-column :sortable="true" field="quantity" header="Stock" style="min-width: 10rem" class="bg-gray-100 flex justify-content-center w-12rem ">
-          <template #body="slotProps">
-            <div class="quantity-cell">
-              <pv-button icon="pi pi-minus"    severity="danger"   rounded outlined @click="onDecreaseStock(slotProps.data)" />
-              <pv-tag :severity="slotProps.data.quantity < 10 ? 'danger' : 'success'">
-                {{ slotProps.data.quantity }}
-              </pv-tag>
-              <pv-button icon="pi pi-plus"  rounded outlined  @click="onIncreaseStock(slotProps.data)" />
-            </div>
-          </template>
-        </pv-column>
-        <pv-column field="imageUrl" header="imageUrl" style="width: 10rem" class="bg-gray-100" >
-          <template #body="slotProps">
-            <img :src="slotProps.data.imageUrl" style="width: 100%; height: auto; border-radius: 4px;"  alt="Image not found"/>
-          </template>
-        </pv-column>
-      </template>
-    </data-manager>
-    <item-create-and-edit-dialog
-        :edit="isEdit"
-        :item="item"
-        :visible="createAndEditDialogIsVisible"
-        entity-name="Item"
-        v-on:cancel-requested="onCancelRequested"
-        v-on:save-requested="onSaveRequested($event)"/>
-    <stock-edit-dialog
-        :item="item"
-        :visible="stockDialogIsVisible"
-        entity-name="Modificar Stock"
-        :is-increase="isIncrease"
-        v-on:cancel-requested="onCancelRequested"
-        v-on:save-requested="onSaveRequested($event)"/>
+  <div class="flex">
+    <div class="w-full mt-8 flex-1">
+      <data-manager :title="title"
+                    v-bind:items="items"
+                    v-on:new-item-requested="onNewItem"
+                    v-on:edit-item-requested="onEditItem($event)"
+                    v-on:delete-item-requested="onDeleteItem($event)"
+                    v-on:delete-selected-items-requested="onDeleteSelectedItems($event)">
+        <template #custom-columns >
+          <pv-column :sortable="true" field="id" header="Id" style="min-width: 10rem" class="bg-gray-100" />
+          <pv-column :sortable="true" field="name" header="Name" style="min-width: 12rem" class="bg-gray-100 " />
+          <pv-column :sortable="true" field="quantity" header="Stock" style="min-width: 10rem" class="bg-gray-100 justify-content-center w-12rem ">
+            <template #body="slotProps">
+              <div class="quantity-cell">
+                <pv-button icon="pi pi-minus"    severity="danger"   rounded outlined @click="onDecreaseStock(slotProps.data)" />
+                <pv-tag :severity="slotProps.data.quantity < 10 ? 'danger' : 'success'">
+                  {{ slotProps.data.quantity }}
+                </pv-tag>
+                <pv-button icon="pi pi-plus"  rounded outlined  @click="onIncreaseStock(slotProps.data)" />
+              </div>
+            </template>
+          </pv-column>
+          <pv-column field="imageUrl" header="imageUrl" style="width: 10rem" class="bg-gray-100" >
+            <template #body="slotProps">
+              <img :src="slotProps.data.imageUrl" style="width: 100%; height: auto; border-radius: 4px;"  alt="Image not found"/>
+            </template>
+          </pv-column>
+        </template>
+      </data-manager>
+      <item-create-and-edit-dialog
+          :edit="isEdit"
+          :item="item"
+          :visible="createAndEditDialogIsVisible"
+          entity-name="Item"
+          v-on:cancel-requested="onCancelRequested"
+          v-on:save-requested="onSaveRequested($event)"/>
+      <stock-edit-dialog
+          :item="item"
+          :visible="stockDialogIsVisible"
+          entity-name="Modificar Stock"
+          :is-increase="isIncrease"
+          v-on:cancel-requested="onCancelRequested"
+          v-on:save-requested="onSaveRequested($event)"/>
+    </div>
+    <div class="flex-1 mt-8">
+      <h3>Manage Dishes</h3>
+      <dish-list-view/>
+    </div>
   </div>
+
 </template>
 
 <style scoped>
