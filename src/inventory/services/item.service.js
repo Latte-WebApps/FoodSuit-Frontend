@@ -31,4 +31,8 @@ export class ItemService {
     findByName(name) {
         return http.get(`${this.resourceEndpoint}?name=${name}`);
     }
+
+    updateProductQuantity(id, quantity) {
+        return http.patch(`${this.resourceEndpoint}/${id}`, { quantity });
+    }
 }
