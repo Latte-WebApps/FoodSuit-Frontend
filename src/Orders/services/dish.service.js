@@ -24,12 +24,20 @@ export class DishService {
         return http.post(this.orderEndpoint, order);
     }
 
+    createDish(dish) {
+        return http.post(this.resourceEndpoint, dish);
+    }
+
     update(id, order) {
         return http.put(`${this.orderEndpoint}/${id}`, order);
     }
 
     delete(id) {
         return http.delete(`${this.orderEndpoint}/${id}`);
+    }
+
+    deleteDish(id) {
+        return http.delete(`${this.resourceEndpoint}/${id}`);
     }
 
     saveSelectedDishes(selectedFoods) {
