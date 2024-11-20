@@ -70,7 +70,8 @@ export default {
         this.item.quantity += updatedItem.quantityChange;
         console.log('New quantity:', this.item.quantity);
         this.updateQuantityItem();
-        this.generateReport(this.item, updatedItem.quantityChange);
+        if (updatedItem.quantityChange > 0)
+          this.generateReport(this.item, updatedItem.quantityChange);
       } else if (updatedItem.id) {
         this.updateItem();
       } else {
