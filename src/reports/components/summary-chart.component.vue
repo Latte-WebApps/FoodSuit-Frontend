@@ -6,44 +6,59 @@
 </template>
 
 <script>
-import { Chart } from 'chart.js/auto';
-import ReportesService from "../services/reportes.service.js";
+import { Chart } from "chart.js/auto";
+import { ReportService } from "../../finance/services/report.service.js";
 
 export default {
-  name: 'summary-chart',
+  name: "summary-chart",
   data() {
     return {
-      reports: [],
-      chart: null,
+      reportService: null, // Instancia del servicio
+      reports: [], // Lista de reportes
+      chart: null, // Instancia del gráfico
     };
   },
-  mounted() {
-    this.loadReports();
+  created() {
+    // Inicializar el servicio
+    this.reportService = new ReportService();
+
+    // Cargar los reportes al crearse el componente
+    this.reportService
+        .getAll()
+        .then((response) => {
+          this.reports = response.data;
+          this.renderChart(); // Renderizar el gráfico con los datos obtenidos
+        })
+        .catch((error) => {
+          console.error("Error loading reports:", error);
+        });
   },
   methods: {
-
-    loadReports() {
-      ReportesService.getAll().then((response) => {
-        this.reports = response.data;
-        this.renderChart();
-      }).catch(error => {
-        console.error('Error loading reports:', error);
-      });
-    },
-
     getMonthlyData() {
       const incomeData = {};
       const expenseData = {};
       const months = [
-        'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
       ];
 
+      // Procesar los datos para generar las estadísticas mensuales
       this.reports.forEach((report) => {
         const reportDate = new Date(report.date);
         const month = months[reportDate.getMonth()];
-        if (report.type === 'income') {
+        if (report.reportType === "Income") {
           incomeData[month] = (incomeData[month] || 0) + report.amount;
-        } else if (report.type === 'expense') {
+        } else if (report.reportType === "Expense") {
           expenseData[month] = (expenseData[month] || 0) + report.amount;
         }
       });
@@ -54,27 +69,27 @@ export default {
     renderChart() {
       const { incomeData, expenseData } = this.getMonthlyData();
       const months = Object.keys(incomeData).length > 0 ? Object.keys(incomeData) : Object.keys(expenseData);
-      const incomeValues = months.map(month => incomeData[month] || 0);
-      const expenseValues = months.map(month => expenseData[month] || 0);
+      const incomeValues = months.map((month) => incomeData[month] || 0);
+      const expenseValues = months.map((month) => expenseData[month] || 0);
 
-      const ctx = document.getElementById('summaryChart').getContext('2d');
+      const ctx = document.getElementById("summaryChart").getContext("2d");
       this.chart = new Chart(ctx, {
-        type: 'bar',
+        type: "bar",
         data: {
           labels: months,
           datasets: [
             {
-              label: 'Income',
+              label: "Income",
               data: incomeValues,
-              backgroundColor: 'rgba(75, 192, 192, 0.6)',
-              borderColor: 'rgba(75, 192, 192, 1)',
+              backgroundColor: "rgba(75, 192, 192, 0.6)",
+              borderColor: "rgba(75, 192, 192, 1)",
               borderWidth: 1,
             },
             {
-              label: 'Expenses',
+              label: "Expenses",
               data: expenseValues,
-              backgroundColor: 'rgba(255, 99, 132, 0.6)',
-              borderColor: 'rgba(255, 99, 132, 1)',
+              backgroundColor: "rgba(255, 99, 132, 0.6)",
+              borderColor: "rgba(255, 99, 132, 1)",
               borderWidth: 1,
             },
           ],
