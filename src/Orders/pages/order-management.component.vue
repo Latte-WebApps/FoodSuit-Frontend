@@ -1,6 +1,7 @@
 <script>
 import DishList from "../components/dish-list.component.vue";
 import {DishService} from "../services/dish.service.js";
+import {ItemService} from "../../inventory/services/item.service.js";
 import {EmployeeService} from "../../schedules/services/employees-service.js";
 import {Employee} from "../../schedules/model/employee-entity.js";
 
@@ -29,6 +30,7 @@ export default {
   data() {
     return {
       dishService: new DishService(),
+      itemService: new ItemService(),
       selectedDishes: [],
 
       categories: ['starter', 'main', 'special', 'dessert', 'drink'], // Lista de categorías
@@ -78,6 +80,21 @@ export default {
       try {
         const order = this.orders.find(order => order.id === orderId);
         if (order) {
+          // Reduce product quantities
+          for (const dish of order.dishes) {
+            const dishDetails = this.dishesByCategory[dish.category]?.find(d => d.id === dish.id);
+            if (dishDetails) {
+              for (const product of dishDetails.products) {
+                const productDetails = this.items.find(item => item.id === product.id);
+                if (productDetails) {
+                  productDetails.quantity -= product.quantity * dish.quantity;
+                  await this.itemService.updateProductQuantity(product.id, productDetails.quantity);
+                }
+              }
+            }
+          }
+
+          // Update order status
           order.status = 'Completed';
           await this.dishService.update(orderId, order);
           this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Order status updated to Completed', life: 3000 });
