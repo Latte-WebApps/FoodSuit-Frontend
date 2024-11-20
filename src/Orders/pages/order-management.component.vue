@@ -3,7 +3,8 @@ import DishList from "../components/dish-list.component.vue";
 import {DishService} from "../services/dish.service.js";
 import {EmployeeService} from "../../schedules/services/employees-service.js";
 import {Employee} from "../../schedules/model/employee-entity.js";
-
+import {Report} from "../../finance/model/report.entity.js";
+import {ReportService} from "../../finance/services/report.service.js";
 
 
 export default {
@@ -43,8 +44,9 @@ export default {
       orderOverview: false,
       viewOrders: false,
 
-      orders: []
+      orders: [],
 
+      reportService: null
     }
   },
 
@@ -62,7 +64,7 @@ export default {
     }).catch(error => console.error(error));
 
     this.fetchOrders();
-
+    this.reportService = new ReportService();
   },
 
   methods: {
@@ -80,6 +82,11 @@ export default {
         if (order) {
           order.status = 'Completed';
           await this.dishService.update(orderId, order);
+
+          // Add report generation
+          this.generateReport(orderId, order)
+
+
           this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Order status updated to Completed', life: 3000 });
         }
       } catch (error) {
@@ -166,6 +173,23 @@ export default {
       }
       this.clearOrder();
       this.orderOverview = false;
+    },
+    // Report generation method
+    generateReport(orderId, order) {
+      const date = new Date().toISOString().split('T')[0];
+      const description = `(Order Checkout) Service to table ${this.selectedTable}`;
+      const priceResult = order.totalPrice;
+
+      const report = new Report ({
+        description,
+        reportType: 'Income',
+        date,
+        amount: priceResult,
+        productsId: 0,
+        ordersId: orderId
+      });
+      this.reportService.create(report).then(response => {
+      }).catch(error => console.error(error));
     }
   }
 
