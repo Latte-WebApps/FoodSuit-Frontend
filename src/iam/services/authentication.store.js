@@ -62,7 +62,6 @@ export const useAuthenticationStore = defineStore({
                     this.userId = signInResponse.id;
                     this.username = signInResponse.username;
                     localStorage.setItem('token', signInResponse.token);
-                    console.log(signInResponse);
                     router.push({ name: 'home' });
                     })
                 .catch(error => {
