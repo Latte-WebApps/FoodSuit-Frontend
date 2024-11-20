@@ -10,11 +10,11 @@ export default {
     return {
       employees: [], // Lista completa de empleados
       topEmployees: [], // Lista de empleados en "top employees"
-      employee: { id: null, name: '' }, // Datos del empleado para crear/editar
+      employee: { id: null, firstName: "", lastName: "" }, // Datos del empleado para crear/editar
       createAndEditDialogIsVisible: false, // Controla la visibilidad del cuadro flotante
       employeeSelectionDialogVisible: false, // Controla la visibilidad del cuadro flotante de selección
       isEdit: false, // Controla si estamos en modo edición
-      submitted: false // Controla si el formulario fue enviado
+      submitted: false, // Controla si el formulario fue enviado
     };
   },
   mounted() {
@@ -24,20 +24,24 @@ export default {
   methods: {
     // Carga a todos los empleados desde EmployeeService
     loadEmployees() {
-      EmployeeService.getAll().then((response) => {
-        this.employees = response.data; // Guarda la lista de empleados completa
-      }).catch(error => {
-        console.error("Error loading employees:", error);
-      });
+      EmployeeService.getAll()
+          .then((response) => {
+            this.employees = response.data; // Guarda la lista de empleados completa
+          })
+          .catch((error) => {
+            console.error("Error loading employees:", error);
+          });
     },
     // Carga todos los empleados de "top employees"
     loadTopEmployees() {
-      TopEmployeeService.getAll().then((response) => {
-        // Guarda solo los primeros 4 empleados
-        this.topEmployees = response.data.slice(0, 4);
-      }).catch(error => {
-        console.error("Error loading top employees:", error);
-      });
+      TopEmployeeService.getAll()
+          .then((response) => {
+            // Guarda solo los primeros 4 empleados
+            this.topEmployees = response.data.slice(0, 4);
+          })
+          .catch((error) => {
+            console.error("Error loading top employees:", error);
+          });
     },
     // Mostrar el cuadro flotante para seleccionar un empleado
     onNewEmployee() {
@@ -49,15 +53,22 @@ export default {
     },
     // Agregar un empleado a "top employees"
     onSelectEmployee(employee) {
-      if (!this.topEmployees.some(emp => emp.id === employee.id)) {
+      if (!this.topEmployees.some((emp) => emp.id === employee.id)) {
         // Verificar si ya está en la lista
         if (this.topEmployees.length < 4) {
-          TopEmployeeService.create({ id: employee.id, name: employee.name }).then(() => {
-            this.loadTopEmployees(); // Recargar los empleados
-            this.employeeSelectionDialogVisible = false; // Cerrar el cuadro flotante
-          }).catch(error => {
-            console.error("Error adding top employee:", error);
-          });
+          const topEmployee = {
+            id: employee.id,
+            firstName: employee.firstName,
+            lastName: employee.lastName,
+          };
+          TopEmployeeService.create(topEmployee)
+              .then(() => {
+                this.loadTopEmployees(); // Recargar los empleados
+                this.employeeSelectionDialogVisible = false; // Cerrar el cuadro flotante
+              })
+              .catch((error) => {
+                console.error("Error adding top employee:", error);
+              });
         } else {
           alert("No puedes agregar más de 4 empleados a Top Employees.");
         }
@@ -73,23 +84,27 @@ export default {
     },
     // Eliminar un empleado de "top employees"
     onDeleteEmployee(employee) {
-      TopEmployeeService.delete(employee.id).then(() => {
-        this.loadTopEmployees(); // Recargar los empleados
-      }).catch(error => {
-        console.error("Error deleting top employee:", error);
-      });
+      TopEmployeeService.delete(employee.id)
+          .then(() => {
+            this.loadTopEmployees(); // Recargar los empleados
+          })
+          .catch((error) => {
+            console.error("Error deleting top employee:", error);
+          });
     },
     // Guardar cambios en un empleado de "top employees"
     onSaveRequested(employee) {
       this.submitted = true;
-      if (employee.name) {
+      if (employee.firstName && employee.lastName) {
         // Verificar si es una creación o edición
-        TopEmployeeService.update(employee.id, employee).then(() => {
-          this.loadTopEmployees(); // Recargar los empleados
-          this.createAndEditDialogIsVisible = false; //Cierra el cuadro flotante
-        }).catch(error => {
-          console.error("Error updating top employee:", error);
-        });
+        TopEmployeeService.update(employee.id, employee)
+            .then(() => {
+              this.loadTopEmployees(); // Recargar los empleados
+              this.createAndEditDialogIsVisible = false; // Cierra el cuadro flotante
+            })
+            .catch((error) => {
+              console.error("Error updating top employee:", error);
+            });
       }
     },
     // Cancelar la creación o edición de un empleado
@@ -97,8 +112,8 @@ export default {
       this.createAndEditDialogIsVisible = false; // Cerrar el cuadro flotante
       this.submitted = false; // Reiniciar el estado de envío
       this.isEdit = false; // Reiniciar el modo edición
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -111,17 +126,23 @@ export default {
       <thead>
       <tr>
         <th>Id</th>
-        <th>Name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
         <th>Actions</th>
       </tr>
       </thead>
       <tbody>
       <tr v-for="employee in topEmployees" :key="employee.id">
         <td>{{ employee.id }}</td>
-        <td>{{ employee.name }}</td>
+        <td>{{ employee.firstName }}</td>
+        <td>{{ employee.lastName }}</td>
         <td>
-          <button @click="onEditEmployee(employee)" class="btn-edit">Edit</button>
-          <button @click="onDeleteEmployee(employee)" class="btn-delete">Delete</button>
+          <button @click="onEditEmployee(employee)" class="btn-edit">
+            Edit
+          </button>
+          <button @click="onDeleteEmployee(employee)" class="btn-delete">
+            Delete
+          </button>
         </td>
       </tr>
       </tbody>
@@ -129,7 +150,9 @@ export default {
 
     <!-- Botón para crear nuevo empleado -->
     <div class="actions">
-      <button @click="onNewEmployee" class="btn-new-employee">New Employee</button>
+      <button @click="onNewEmployee" class="btn-new-employee">
+        New Employee
+      </button>
     </div>
 
     <!-- Cuadro flotante para seleccionar empleado de la lista -->
@@ -137,7 +160,7 @@ export default {
       <ul class="employee-selection-list">
         <li v-for="employee in employees" :key="employee.id">
           <button @click="onSelectEmployee(employee)">
-            {{ employee.name }}
+            {{ employee.firstName }} {{ employee.lastName }}
           </button>
         </li>
       </ul>
@@ -150,14 +173,28 @@ export default {
         entity-name="Employee"
         :edit="isEdit"
         @cancel-requested="onCancelRequested"
-        @save-requested="onSaveRequested">
+        @save-requested="onSaveRequested"
+    >
       <template #content>
         <div class="p-fluid">
           <div class="field mt-5">
             <pv-float-label>
-              <label for="name">Name</label>
-              <pv-input-text id="name" v-model="employee.name"
-                             :class="{'p-invalid': submitted && !employee.name }"/>
+              <label for="firstName">First Name</label>
+              <pv-input-text
+                  id="firstName"
+                  v-model="employee.firstName"
+                  :class="{ 'p-invalid': submitted && !employee.firstName }"
+              />
+            </pv-float-label>
+          </div>
+          <div class="field mt-5">
+            <pv-float-label>
+              <label for="lastName">Last Name</label>
+              <pv-input-text
+                  id="lastName"
+                  v-model="employee.lastName"
+                  :class="{ 'p-invalid': submitted && !employee.lastName }"
+              />
             </pv-float-label>
           </div>
         </div>

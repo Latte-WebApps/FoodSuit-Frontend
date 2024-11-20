@@ -1,7 +1,7 @@
 import http from '../../shared/services/http-common.js';
 
 class AttendanceService {
-    resourceEndpoint = '/attendance';
+    resourceEndpoint = '/attendances';
 
     getAll() {
         return http.get(this.resourceEndpoint);

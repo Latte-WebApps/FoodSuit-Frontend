@@ -2,15 +2,18 @@ export class Attendance {
     constructor(data) {
         this.id = data.id || null;
         this.employeeId = data.employeeId || null;
-        this.name = data.name || '';
-        this.dateStart = data.dateStart || '';
-        this.dateEnd = data.dateEnd || '';
-        this.start = data.start || [];
-        this.end = data.end || [];
+        this.date = data.date || ""; // Formato: dd/MM/yyyy
+        this.checkInTime = data.checkInTime || ""; // Formato: HH:mm
+        this.checkOutTime = data.checkOutTime || ""; // Formato: HH:mm
     }
 
-
+    // Validación para asegurarse de que los campos necesarios estén completos
     isValid() {
-        return this.employeeId && this.date && this.start.length > 0 && this.end.length > 0;
+        return (
+            this.employeeId &&
+            this.date &&
+            this.checkInTime &&
+            (!this.checkOutTime || this.checkOutTime.length > 0)
+        );
     }
 }

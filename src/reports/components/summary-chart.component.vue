@@ -7,7 +7,7 @@
 
 <script>
 import { Chart } from 'chart.js/auto';
-import ReportService from '../services/report.service.js';
+import ReportesService from "../services/reportes.service.js";
 
 export default {
   name: 'summary-chart',
@@ -23,7 +23,7 @@ export default {
   methods: {
 
     loadReports() {
-      ReportService.getAll().then((response) => {
+      ReportesService.getAll().then((response) => {
         this.reports = response.data;
         this.renderChart();
       }).catch(error => {

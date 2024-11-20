@@ -1,6 +1,6 @@
 import http from '../../shared/services/http-common.js';
 
-class ReportService {
+class ReportesService {
     resourceEndpoint = '/reports';
 
     getAll() {
@@ -8,4 +8,4 @@ class ReportService {
     }
 }
 
-export default new ReportService();
+export default new ReportesService();
