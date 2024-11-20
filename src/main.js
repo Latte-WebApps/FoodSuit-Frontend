@@ -38,7 +38,8 @@ import Drawer from "primevue/drawer";
 import Textarea from "primevue/textarea";
 import DatePicker from "primevue/datepicker";
 import Listbox from "primevue/listbox";
-import {Password} from "primevue";
+import Password from "primevue/password";
+import DataView from "primevue/dataview";
 import { createPinia } from "pinia";
 
 
@@ -83,6 +84,7 @@ app.component('pv-button', Button)
     .component('pv-date-picker', DatePicker)
     .component('pv-list-box', Listbox)
     .component('pv-password', Password)
+    .component('pv-data-view', DataView)
 
 
 app.use(i18n);
