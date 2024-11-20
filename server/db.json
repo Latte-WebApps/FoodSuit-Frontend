@@ -86,7 +86,7 @@
       "name": "Sofia Lopez"
     }
   ],
-  "inventory": [
+  "products": [
     {
       "id": 1,
       "name": "Chicken",
@@ -514,43 +514,185 @@
       "id": 1,
       "name": "Spaghetti",
       "price": 10,
-      "category": "main"
+      "category": "main",
+      "products": [
+        {
+          "id": 3,
+          "quantity": 1
+        },
+        {
+          "id": 4,
+          "quantity": 2
+        },
+        {
+          "id": 11,
+          "quantity": 1
+        },
+        {
+          "id": 12,
+          "quantity": 1
+        }
+      ]
     },
     {
       "id": 2,
       "name": "Lasagna",
       "price": 15,
-      "category": "main"
+      "category": "main",
+        "products": [
+            {
+            "id": 3,
+            "quantity": 2
+            },
+            {
+            "id": 4,
+            "quantity": 3
+            },
+            {
+            "id": 11,
+            "quantity": 1
+            },
+            {
+            "id": 12,
+            "quantity": 1
+            }
+        ]
     },
     {
       "id": 3,
       "name": "Fettuccine Alfredo",
       "price": 12,
-      "category": "main"
+      "category": "main",
+        "products": [
+            {
+            "id": 3,
+            "quantity": 1
+            },
+            {
+            "id": 4,
+            "quantity": 2
+            },
+            {
+            "id": 11,
+            "quantity": 1
+            },
+            {
+            "id": 12,
+            "quantity": 1
+            }
+        ]
     },
     {
       "id": 4,
       "name": "Ceviche",
       "price": 12,
-      "category": "starter"
+      "category": "starter",
+        "products": [
+            {
+            "id": 1,
+            "quantity": 1
+            },
+            {
+            "id": 4,
+            "quantity": 2
+            },
+            {
+            "id": 5,
+            "quantity": 1
+            },
+            {
+            "id": 6,
+            "quantity": 1
+            },
+            {
+            "id": 7,
+            "quantity": 1
+            },
+            {
+            "id": 8,
+            "quantity": 1
+            },
+            {
+            "id": 11,
+            "quantity": 1
+            },
+            {
+            "id": 12,
+            "quantity": 1
+            }
+        ]
     },
     {
       "id": 5,
       "name": "Wellington",
       "price": 12,
-      "category": "special"
+      "category": "special",
+        "products": [
+            {
+            "id": 2,
+            "quantity": 1
+            },
+            {
+            "id": 4,
+            "quantity": 2
+            },
+            {
+            "id": 11,
+            "quantity": 1
+            },
+            {
+            "id": 12,
+            "quantity": 1
+            }
+        ]
     },
     {
       "id": 6,
       "name": "Mazamorra",
       "price": 12,
-      "category": "dessert"
+      "category": "dessert",
+        "products": [
+            {
+            "id": 13,
+            "quantity": 1
+            },
+            {
+            "id": 14,
+            "quantity": 2
+            },
+            {
+            "id": 15,
+            "quantity": 1
+            },
+            {
+            "id": 16,
+            "quantity": 1
+            }
+        ]
     },
     {
       "id": 7,
       "name": "Lemonade",
       "price": 12,
-      "category": "drink"
+      "category": "drink",
+        "products": [
+            {
+            "id": 9,
+            "quantity": 1
+            },
+            {
+            "id": 10,
+            "quantity": 1
+            },
+            {
+            "id": 11,
+            "quantity": 1
+            },
+            {
+            "id": 12,
+            "quantity": 1
+            }
+        ]
     }
   ],
   "orders": [
