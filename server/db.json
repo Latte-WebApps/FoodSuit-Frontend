@@ -4,7 +4,8 @@
       "id": 1,
       "name": "Juan Flores",
       "image": "http://image.com/juan_flores",
-      "schedule": "0"
+      "entryTime": "10:00",
+      "exitTime": "02:00"
     },
     {
       "id": 2,

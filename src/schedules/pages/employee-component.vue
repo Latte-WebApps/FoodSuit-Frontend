@@ -57,7 +57,7 @@ export default {
     onSaveRequested(employee) {
       console.log('onSaveRequested');
       this.submitted = true;
-      if (this.employee.name.trim()) {
+      if (this.employee.firstName.trim()) {
         if (employee.id) {
           this.updateEmployee();
         } else
@@ -73,7 +73,7 @@ export default {
         let employee = new Employee(response.data);
         this.employees.push(employee);
         this.notifySuccessfulAction("Employee created successfully");
-      }).catch(error => console.error(error));
+      }).catch(error => console.error('Error al crear empleado:', error.response));
     },
     updateEmployee() {
       this.employeeService.update(this.employee.id, this.employee).then(response => {
@@ -126,7 +126,8 @@ export default {
             <img :src="slotProps.data.image" alt="Employee Image" style="width: 100%; height: auto; border-radius: 4px;" />
           </template>
         </pv-column>
-        <pv-column :sortable="true" field="name" header="Name" style="min-width: 24rem"/>
+        <pv-column :sortable="true" field="firstName" header="First Name" style="min-width: 24rem"/>
+        <pv-column :sortable="true" field="lastName" header="Last Name" style="min-width: 24rem"/>
         <pv-column :sortable="true" field="entryTime" header="Entry Time" style="min-width: 12rem"/>
         <pv-column :sortable="true" field="exitTime" header="Exit Time" style="min-width: 12rem"/>
       </template>

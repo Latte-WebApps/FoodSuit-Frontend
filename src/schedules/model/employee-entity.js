@@ -1,8 +1,8 @@
 export class Employee {
-    constructor({ id = null, name = '', image = '', entryTime = '' , exitTime = '' }) {
+    constructor({ id = null, firstName = '', lastName = '', entryTime = '' , exitTime = '' }) {
         this.id = id;
-        this.name = name;
-        this.image = image;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.entryTime = entryTime;
         this.exitTime = exitTime;
     }

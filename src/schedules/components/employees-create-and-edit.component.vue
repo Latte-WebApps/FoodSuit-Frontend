@@ -18,7 +18,7 @@ export default {
     },
     onSaveRequested() {
       this.submitted = true;
-      }
+    }
   }
 }
 </script>
@@ -34,23 +34,28 @@ export default {
       <div class="p-fluid">
         <div class="field mt-5">
           <pv-float-label>
-            <label for="name">Name</label>
-            <pv-input-text id="name" v-model="employee.name"
-                           :class="{'p-invalid': submitted && !employee.name }"/>
+            <label for="firstName">First Name</label>
+            <pv-input-text id="firstName" v-model="employee.firstName"
+                           :class="{'p-invalid': submitted && !employee.firstName }"/>
+          </pv-float-label>
+          <pv-float-label>
+            <label for="lastName">Last Name</label>
+            <pv-input-text id="lastName" v-model="employee.lastName"
+                           :class="{'p-invalid': submitted && !employee.lastName }"/>
           </pv-float-label>
         </div>
 
         <div class="field mt-5">
-        <pv-float-label>
+          <pv-float-label>
             <label for="schedule">Entry Time</label>
             <pv-input-text id="schedule" v-model="employee.entryTime"
                            :class="{'p-invalid': submitted && !employee.entryTime }"/>
           </pv-float-label>
 
           <pv-float-label>
-          <label for="schedule">Exit Time</label>
-          <pv-input-text id="schedule" v-model="employee.exitTime"
-                         :class="{'p-invalid': submitted && !employee.exitTime }"/>
+            <label for="schedule">Exit Time</label>
+            <pv-input-text id="schedule" v-model="employee.exitTime"
+                           :class="{'p-invalid': submitted && !employee.exitTime }"/>
           </pv-float-label>
         </div>
       </div>
