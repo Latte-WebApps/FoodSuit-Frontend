@@ -1,7 +1,7 @@
 import http from '../../shared/services/http-common.js';
 
 class InventoryService {
-    resourceEndpoint = '/inventory';
+    resourceEndpoint = '/products';
 
     getAll() {
         return http.get(this.resourceEndpoint);

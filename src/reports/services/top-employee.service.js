@@ -1,7 +1,7 @@
 import http from '../../shared/services/http-common.js';
 
 class TopEmployeeService {
-    resourceEndpoint = '/top-employees';
+    resourceEndpoint = '/employees';
 
     getAll() {
         return http.get(this.resourceEndpoint);
