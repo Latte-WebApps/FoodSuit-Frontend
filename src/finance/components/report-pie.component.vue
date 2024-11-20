@@ -19,10 +19,10 @@ export default {
   methods: {
     setChartData() {
       const incomeSum = this.reports
-          .filter(report => report.type === 'income')
+          .filter(report => report.reportType === 'Income')
           .reduce((sum, report ) => sum + report.amount, 0);
       const expenseSum = this.reports
-          .filter(report => report.type === 'expense')
+          .filter(report => report.reportType === 'Expense')
           .reduce((sum, report) => sum + report.amount, 0);
       return {
         labels: ['Incomes','Expenses'],

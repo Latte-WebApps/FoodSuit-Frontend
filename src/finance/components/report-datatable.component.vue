@@ -9,7 +9,7 @@ export default {
   },
   methods: {
     getRowType(data) {
-      return data.type === 'income' ? 'income-row' : 'expense-row';
+      return data.reportType === 'Income' ? 'income-row' : 'expense-row';
     }
   }
 }
@@ -24,7 +24,11 @@ export default {
       :paginator="true"
       paginator-template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink">
     <pv-column field="description" style="min-width: 24rem;"/>
-    <pv-column field="amount"  style="min-width: 6rem"/>
+    <pv-column field="amount"  style="min-width: 6rem">
+      <template #body="slotProps">
+          S/. {{ slotProps.data.amount }}
+      </template>
+    </pv-column>
     <pv-column field="date" style="min-width: 12rem"/>
   </pv-data-table>
 </template>
