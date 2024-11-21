@@ -1,55 +1,58 @@
 <script>
-import {Report} from "../model/report.entity.js";
-import {ReportService} from "../services/report.service.js";
-
 export default {
   name: "report-pie",
+  props: {
+    reports: {
+      type: Array,
+      required: true
+    }
+  },
   data() {
     return {
-      reports: [],
-      reportService: null,
-      chartData: null
+      chartData: null,
+      chartOptions: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
     }
   },
   methods: {
     setChartData() {
       const incomeSum = this.reports
-          .filter(report => report.type === 'income')
+          .filter(report => report.reportType === 'Income')
           .reduce((sum, report ) => sum + report.amount, 0);
       const expenseSum = this.reports
-          .filter(report => report.type === 'expense')
+          .filter(report => report.reportType === 'Expense')
           .reduce((sum, report) => sum + report.amount, 0);
       return {
         labels: ['Incomes','Expenses'],
         datasets: [
           {
             data: [incomeSum, expenseSum],
-            backgroundColor: [
-              "#aefaa6",
-              "#f3666b",
-            ],
-            hoverBackgroundColor: [
-              "#aefaa6",
-              "#f3666b",
-            ]
+            backgroundColor: ["#aefaa6", "#f3666b"],
+            hoverBackgroundColor: ["#aefaa6", "#f3666b"]
           }
         ]
       };
     }
   },
+  watch: {
+    reports: {
+      handler() {
+        this.chartData = this.setChartData();
+      },
+      deep: true,
+      immediate: true
+    }
+  },
   created() {
-    this.reportService = new ReportService();
-    this.reportService.getAll().then(response => {
-      this.reports = response.data.map(report => new Report(report));
-      this.chartData = this.setChartData();
-    }).catch(e => console.error(e));
-
+    this.chartData = this.setChartData();
   }
 }
 </script>
 
 <template>
-  <div class="card flex justify-center">
+  <div class="card flex justify-center h-23rem">
     <pv-chart type="pie" :data="chartData" :options="chartOptions" class="w-full md:w-[30rem]"/>
   </div>
 </template>

@@ -43,17 +43,25 @@ export default {
 
         <div class="field mt-5">
         <pv-float-label>
-          <label for="quantity">quantity</label>
+          <label for="quantity">Quantity</label>
           <pv-input-number id="quantity" v-model="item.quantity"
                            :class="{'p-invalid': submitted && !item.quantity }"/>
         </pv-float-label>
         </div>
-
         <div class="field mt-5">
-          <pv-float-label>
-            <label for="image">image</label>
-            <pv-input-text id="image" v-model="item.image"
-                           :class="{'p-invalid': submitted && !item.image }"/>
+          <pv-float-label >
+            <label for="price">Price</label>
+            <pv-input-text id="price" v-model="item.price"
+                           :class="{'p-invalid': submitted && !item.price }"/>
+          </pv-float-label>
+
+
+        </div>
+        <div class="field mt-5">
+          <pv-float-label >
+            <label for="imageUrl">Image URL</label>
+            <pv-input-text id="imageUrl" v-model="item.imageUrl"
+                           :class="{'p-invalid': submitted && !item.imageUrl }"/>
           </pv-float-label>
 
 

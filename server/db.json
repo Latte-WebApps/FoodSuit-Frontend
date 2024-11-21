@@ -3,52 +3,88 @@
     {
       "id": 1,
       "name": "Juan Flores",
-      "image": "http://image.com/juan_flores"
+      "image": "http://image.com/juan_flores",
+      "entryTime": "10:00",
+      "exitTime": "02:00"
     },
     {
       "id": 2,
       "name": "Maria Perez",
-      "image": "http://image.com/maria_perez"
+      "image": "http://image.com/maria_perez",
+      "schedule": "0"
     },
     {
       "id": 3,
       "name": "Carlos Garcia",
-      "image": "http://image.com/carlos_garcia"
+      "image": "http://image.com/carlos_garcia",
+      "schedule": "0"
     },
     {
       "id": 4,
       "name": "Ana Torres",
-      "image": "http://image.com/ana_torres"
+      "image": "http://image.com/ana_torres",
+      "schedule": "0"
     },
     {
       "id": 5,
       "name": "Luis Morales",
-      "image": "http://image.com/luis_morales"
+      "image": "http://image.com/luis_morales",
+      "schedule": "0"
     },
     {
       "id": 6,
       "name": "Sofia Lopez",
-      "image": "http://image.com/sofia_lopez"
+      "image": "http://image.com/sofia_lopez",
+      "schedule": "0"
     },
     {
       "id": 7,
       "name": "Miguel Rodriguez",
-      "image": "http://image.com/miguel_rodriguez"
+      "image": "http://image.com/miguel_rodriguez",
+      "schedule": "0"
     },
     {
       "id": 8,
       "name": "Laura Hernandez",
-      "image": "http://image.com/laura_hernandez"
+      "image": "http://image.com/laura_hernandez",
+      "schedule": "0"
     },
     {
       "id": 9,
       "name": "Jorge Ramirez",
-      "image": "http://image.com/jorge_ramirez"
+      "image": "http://image.com/jorge_ramirez",
+      "schedule": "0"
     },
     {
       "id": 10,
       "name": "Claudia Jimenez",
-      "image": "http://image.com/claudia_jimenez"
+      "image": "http://image.com/claudia_jimenez",
+      "schedule": "0"
+    },
+    {
+      "id": 11,
+      "name": "Josue Paiva",
+      "image": "",
+      "entryTime": "10:00",
+      "exitTime": "02:00"
+    }
+  ],
+  "top-employees": [
+    {
+      "id": 7,
+      "name": "Miguel Rodriguez"
+    },
+    {
+      "id": 3,
+      "name": "Carlos Garcia"
+    },
+    {
+      "id": 1,
+      "name": "Juan Flores"
+    },
+    {
+      "id": 6,
+      "name": "Sofia Lopez"
     }
   ],
   "inventory": [
@@ -147,143 +183,439 @@
   "reports": [
     {
       "id": 1,
-      "date": "2024-09-02",
       "description": "Service to Table 1",
+      "type": "income",
+      "date": "2024-09-02",
       "amount": 100,
-      "type": "income"
+      "ordersId": 4,
+      "productsId": ""
     },
     {
       "id": 2,
-      "date": "2024-09-03",
       "description": "Service to Table 2",
+      "type": "income",
+      "date": "2024-09-03",
       "amount": 150,
-      "type": "income"
+      "ordersId": 5,
+      "productsId": ""
     },
     {
       "id": 3,
-      "date": "2024-09-04",
       "description": "Service to Table 5",
+      "type": "income",
+      "date": "2024-09-04",
       "amount": 60,
-      "type": "income"
+      "ordersId": 6,
+      "productsId": ""
     },
     {
       "id": 4,
-      "date": "2024-09-05",
       "description": "Service to Table 3",
+      "type": "income",
+      "date": "2024-09-05",
       "amount": 110,
-      "type": "income"
+      "ordersId": 3,
+      "productsId": ""
     },
     {
       "id": 5,
-      "date": "2024-09-06",
       "description": "Service to Table 4",
+      "type": "income",
+      "date": "2024-09-06",
       "amount": 30,
-      "type": "income"
+      "ordersId": 10,
+      "productsId": ""
     },
     {
       "id": 6,
-      "date": "2024-09-07",
       "description": "Service to Table 6",
+      "type": "income",
+      "date": "2024-09-07",
       "amount": 30,
-      "type": "income"
+      "ordersId": 1,
+      "productsId": ""
     },
     {
       "id": 7,
-      "date": "2024-09-08",
       "description": "Service to Table 8",
+      "type": "income",
+      "date": "2024-09-08",
       "amount": 40,
-      "type": "income"
+      "ordersId": 10,
+      "productsId": ""
     },
     {
       "id": 8,
-      "date": "2024-09-09",
       "description": "Service to Table 9",
+      "type": "income",
+      "date": "2024-09-09",
       "amount": 120,
-      "type": "income"
+      "ordersId": 6,
+      "productsId": ""
     },
     {
       "id": 9,
-      "date": "2024-09-10",
       "description": "Service to Table 1",
+      "type": "income",
+      "date": "2024-09-10",
       "amount": 60,
-      "type": "income"
+      "ordersId": 3,
+      "productsId": ""
     },
     {
       "id": 10,
-      "date": "2024-09-11",
       "description": "Service to Table 2",
+      "type": "income",
+      "date": "2024-09-11",
       "amount": 550,
-      "type": "income"
+      "ordersId": 5,
+      "productsId": ""
     },
     {
       "id": 11,
-      "date": "2024-09-02",
       "description": "Purchase of Chicken 2 units",
+      "type": "expense",
+      "date": "2024-09-02",
       "amount": 50,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 1
     },
     {
       "id": 12,
-      "date": "2024-09-03",
       "description": "Purchase of Beef 1 unit",
+      "type": "expense",
+      "date": "2024-09-03",
       "amount": 30,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 8
     },
     {
       "id": 13,
-      "date": "2024-09-04",
       "description": "Purchase of Pasta 5 units",
+      "type": "expense",
+      "date": "2024-09-04",
       "amount": 100,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 3
     },
     {
       "id": 14,
-      "date": "2024-09-05",
       "description": "Purchase of Tomato 10 units",
+      "type": "expense",
+      "date": "2024-09-05",
       "amount": 20,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 3
     },
     {
       "id": 15,
-      "date": "2024-09-06",
       "description": "Purchase of Lettuce 3 units",
+      "type": "expense",
+      "date": "2024-09-06",
       "amount": 10,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 8
     },
     {
       "id": 16,
-      "date": "2024-09-07",
       "description": "Purchase of Onion 4 units",
+      "type": "expense",
+      "date": "2024-09-07",
       "amount": 15,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 6
     },
     {
       "id": 17,
-      "date": "2024-09-08",
       "description": "Purchase of Garlic 2 units",
+      "type": "expense",
+      "date": "2024-09-08",
       "amount": 5,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 8
     },
     {
       "id": 18,
-      "date": "2024-09-09",
       "description": "Purchase of Bell Pepper 3 units",
+      "type": "expense",
+      "date": "2024-09-09",
       "amount": 10,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 10
     },
     {
       "id": 19,
-      "date": "2024-09-10",
       "description": "Purchase of Olive Oil 1 unit",
+      "type": "expense",
+      "date": "2024-09-10",
       "amount": 5,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 9
     },
     {
       "id": 20,
-      "date": "2024-09-11",
       "description": "Purchase of Vinegar 1 unit",
+      "type": "expense",
+      "date": "2024-09-11",
       "amount": 5,
-      "type": "expense"
+      "ordersId": "",
+      "productsId": 1
+    }
+  ],
+  "attendance": [
+    {
+      "id": 1,
+      "employeeId": 1,
+      "name": "Juan Flores",
+      "date-start": "2024-06-10",
+      "date-end": "2024-10-15",
+      "start": [
+        {
+          "hour": "10:00"
+        }
+      ],
+      "end": [
+        {
+          "hour": "18:00"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "employeeId": 2,
+      "name": "Maria Perez",
+      "date-start": "2024-10-01",
+      "date-end": "2024-10-22",
+      "start": [
+        {
+          "hour": "09:00"
+        }
+      ],
+      "end": [
+        {
+          "hour": "17:00"
+        }
+      ]
+    }
+  ],
+  "productivity": [
+    {
+      "employeeId": 1,
+      "employeeName": "Juan Flores",
+      "hoursWorked": [
+        160,
+        165,
+        170,
+        180,
+        175,
+        160,
+        150
+      ],
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July"
+      ]
+    },
+    {
+      "employeeId": 2,
+      "employeeName": "Maria Perez",
+      "hoursWorked": [
+        150,
+        155,
+        160,
+        162,
+        158,
+        155,
+        165
+      ],
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July"
+      ]
+    },
+    {
+      "employeeId": 3,
+      "employeeName": "Carlos Garcia",
+      "hoursWorked": [
+        180,
+        175,
+        185,
+        190,
+        180,
+        170,
+        160
+      ],
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July"
+      ]
+    },
+    {
+      "employeeId": 4,
+      "employeeName": "Ana Torres",
+      "hoursWorked": [
+        165,
+        170,
+        175,
+        180,
+        185,
+        190,
+        195
+      ],
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July"
+      ]
+    },
+    {
+      "employeeId": 5,
+      "employeeName": "Luis Morales",
+      "hoursWorked": [
+        140,
+        145,
+        150,
+        155,
+        160,
+        162,
+        165
+      ],
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July"
+      ]
+    }
+  ],
+  "dishes": [
+    {
+      "id": 1,
+      "name": "Spaghetti",
+      "price": 10,
+      "category": "main"
+    },
+    {
+      "id": 2,
+      "name": "Lasagna",
+      "price": 15,
+      "category": "main"
+    },
+    {
+      "id": 3,
+      "name": "Fettuccine Alfredo",
+      "price": 12,
+      "category": "main"
+    },
+    {
+      "id": 4,
+      "name": "Ceviche",
+      "price": 12,
+      "category": "starter"
+    },
+    {
+      "id": 5,
+      "name": "Wellington",
+      "price": 12,
+      "category": "special"
+    },
+    {
+      "id": 6,
+      "name": "Mazamorra",
+      "price": 12,
+      "category": "dessert"
+    },
+    {
+      "id": 7,
+      "name": "Lemonade",
+      "price": 12,
+      "category": "drink"
+    }
+  ],
+  "orders": [
+    {
+      "id": "1996",
+      "date": "2024-10-20",
+      "table": 3,
+      "dishes": [
+        {
+          "id": 4,
+          "quantity": 1,
+          "instruction": null
+        },
+        {
+          "id": 2,
+          "quantity": 2,
+          "instruction": null
+        }
+      ],
+      "employee": 3,
+      "totalPrice": 0
+    },
+    {
+      "id": "795a",
+      "date": "2024-10-20",
+      "table": 3,
+      "dishes": [
+        {
+          "id": 4,
+          "quantity": 1,
+          "instruction": "Sin lechuga"
+        },
+        {
+          "id": 2,
+          "quantity": 1,
+          "instruction": null
+        },
+        {
+          "id": 6,
+          "quantity": 1,
+          "instruction": null
+        }
+      ],
+      "employee": 10,
+      "totalPrice": 0
+    },
+    {
+      "id": "7d90",
+      "date": "2024-10-20",
+      "table": 5,
+      "dishes": [
+        {
+          "id": 4,
+          "quantity": 1,
+          "instruction": null
+        },
+        {
+          "id": 6,
+          "quantity": 1,
+          "instruction": null
+        }
+      ],
+      "employee": 8,
+      "totalPrice": 0
     }
   ]
 }

@@ -8,12 +8,36 @@ export class DishService {
         return http.get(this.resourceEndpoint);
     }
 
+    getAllOrders(){
+        return http.get(this.orderEndpoint);
+    }
+
     getByName(name) {
         return http.get(`${this.resourceEndpoint}/${name}`);
     }
 
-    create(foodResource) {
-        return http.post(this.orderEndpoint, foodResource);
+    getByCategory(category) {
+        return http.get(`${this.resourceEndpoint}?category=${category}`);
+    }
+
+    create(order) {
+        return http.post(this.orderEndpoint, order);
+    }
+
+    createDish(dish) {
+        return http.post(this.resourceEndpoint, dish);
+    }
+
+    update(id, order) {
+        return http.put(`${this.orderEndpoint}/${id}`, order);
+    }
+
+    delete(id) {
+        return http.delete(`${this.orderEndpoint}/${id}`);
+    }
+
+    deleteDish(id) {
+        return http.delete(`${this.resourceEndpoint}/${id}`);
     }
 
     saveSelectedDishes(selectedFoods) {

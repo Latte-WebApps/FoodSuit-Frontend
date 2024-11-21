@@ -4,6 +4,7 @@ import App from './App.vue'
 import PrimeVue from 'primevue/config';
 import Aura from '@primevue/themes/aura';
 import 'primeflex/primeflex.css';
+import "primeflex/themes/primeone-light.css"
 import 'primeicons/primeicons.css';
 
 import ConfirmationService from "primevue/confirmationservice";
@@ -35,6 +36,11 @@ import Toolbar from "primevue/toolbar";
 import Tag from "primevue/tag";
 import Drawer from "primevue/drawer";
 import Textarea from "primevue/textarea";
+import DatePicker from "primevue/datepicker";
+import Listbox from "primevue/listbox";
+import Password from "primevue/password";
+import DataView from "primevue/dataview";
+import { createPinia } from "pinia";
 
 
 const app = createApp(App);
@@ -74,10 +80,17 @@ app.component('pv-button', Button)
     .component('pv-textarea', Textarea)
     .component('pv-toolbar', Toolbar)
     .component('pv-toast', Toast)
-    .component('pv-chart', Chart);
+    .component('pv-chart', Chart)
+    .component('pv-date-picker', DatePicker)
+    .component('pv-list-box', Listbox)
+    .component('pv-password', Password)
+    .component('pv-data-view', DataView)
 
 
 app.use(i18n);
 app.use(router);
+
+const pinia = createPinia();
+app.use(pinia)
 
 app.mount('#app');  
