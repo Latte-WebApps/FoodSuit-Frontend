@@ -4,6 +4,6 @@ export class Item {
         this.name = name;
         this.quantity = quantity;
         this.imageUrl = imageUrl;
-        this.price = 0;
+        this.price = price;
     }
 }
